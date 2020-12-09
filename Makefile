@@ -36,13 +36,16 @@ BUILD_DIR = build
 ######################################
 # C sources
 C_SOURCES =  \
-Core/Src/main.c \
 Core/Src/stm32f4xx_it.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_gpio.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_rcc.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_utils.c \
 Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c \
 Core/Src/system_stm32f4xx.c  
+
+# C++ sources
+CXX_SOURCES =  \
+main.cpp 
 
 # ASM sources
 ASM_SOURCES =  \
@@ -90,20 +93,22 @@ AS_DEFS =
 
 # C defines
 C_DEFS =  \
--DUSE_FULL_LL_DRIVER \
--DHSE_VALUE=25000000 \
--DHSE_STARTUP_TIMEOUT=100 \
--DLSE_STARTUP_TIMEOUT=5000 \
--DLSE_VALUE=32768 \
--DEXTERNAL_CLOCK_VALUE=12288000 \
--DHSI_VALUE=16000000 \
--DLSI_VALUE=32000 \
--DVDD_VALUE=3300 \
--DPREFETCH_ENABLE=1 \
--DINSTRUCTION_CACHE_ENABLE=1 \
--DDATA_CACHE_ENABLE=1 \
--DSTM32F411xE
+-DSTM32F411xE \
+# -DUSE_FULL_LL_DRIVER \
+# -DHSE_VALUE=25000000 \
+# -DHSE_STARTUP_TIMEOUT=100 \
+# -DLSE_STARTUP_TIMEOUT=5000 \
+# -DLSE_VALUE=32768 \
+# -DEXTERNAL_CLOCK_VALUE=12288000 \
+# -DHSI_VALUE=16000000 \
+# -DLSI_VALUE=32000 \
+# -DVDD_VALUE=3300 \
+# -DPREFETCH_ENABLE=1 \
+# -DINSTRUCTION_CACHE_ENABLE=1 \
+# -DDATA_CACHE_ENABLE=1 \
 
+# C++ defines
+CXX_DEFS = $(C_DEFS)
 
 # AS includes
 AS_INCLUDES = 
@@ -116,19 +121,25 @@ C_INCLUDES =  \
 -IDrivers/CMSIS/Include \
 -IDrivers/CMSIS/Include
 
+# C++ include 
+CXX_INCLUDES = $(C_INCLUDES)
 
 # compile gcc flags
 ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
 
 CFLAGS = $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
 
+CXXFLAGS = $(MCU) $(CXX_DEFS) $(CXX_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
+
 ifeq ($(DEBUG), 1)
 CFLAGS += -g -gdwarf-2
+CXXFLAGS += -g -gdwarf-2
 endif
 
 
 # Generate dependency information
 CFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"
+CXXFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"
 
 
 #######################################
@@ -149,9 +160,12 @@ all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/$(TARGET
 #######################################
 # build the application
 #######################################
-# list of objects
+# list of C objects
 OBJECTS = $(addprefix $(BUILD_DIR)/,$(notdir $(C_SOURCES:.c=.o)))
 vpath %.c $(sort $(dir $(C_SOURCES)))
+# list of C++ objects
+OBJECTS += $(addprefix $(BUILD_DIR)/,$(notdir $(CXX_SOURCES:.cpp=.o)))
+vpath %.cpp $(sort $(dir $(CXX_SOURCES)))
 # list of ASM program objects
 OBJECTS += $(addprefix $(BUILD_DIR)/,$(notdir $(ASM_SOURCES:.s=.o)))
 vpath %.s $(sort $(dir $(ASM_SOURCES)))
@@ -159,11 +173,14 @@ vpath %.s $(sort $(dir $(ASM_SOURCES)))
 $(BUILD_DIR)/%.o: %.c Makefile | $(BUILD_DIR) 
 	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
 
+$(BUILD_DIR)/%.o: %.cpp Makefile | $(BUILD_DIR) 
+	$(CXX) -c $(CXXFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.cpp=.lst)) $< -o $@
+
 $(BUILD_DIR)/%.o: %.s Makefile | $(BUILD_DIR)
 	$(AS) -c $(CFLAGS) $< -o $@
 
 $(BUILD_DIR)/$(TARGET).elf: $(OBJECTS) Makefile
-	$(CC) $(OBJECTS) $(LDFLAGS) -o $@
+	$(CXX) $(OBJECTS) $(LDFLAGS) -o $@
 	$(SZ) $@
 
 $(BUILD_DIR)/%.hex: $(BUILD_DIR)/%.elf | $(BUILD_DIR)
