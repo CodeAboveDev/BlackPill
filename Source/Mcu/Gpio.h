@@ -12,6 +12,7 @@
 #define Gpio_H
 
 #include <stdint.h>
+#include <type_traits>
 
 class Gpio
 {
@@ -27,5 +28,7 @@ private:
     volatile uint32_t AFRL;
     volatile uint32_t AFRH;    
 };
+
+static_assert(std::is_standard_layout<Gpio>::value, "Gpio class is NOT standard layout");
 
 #endif // Gpio_H
