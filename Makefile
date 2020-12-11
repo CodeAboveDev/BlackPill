@@ -36,12 +36,8 @@ BUILD_DIR = build
 ######################################
 # C sources
 C_SOURCES =  \
-Core/Src/stm32f4xx_it.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_gpio.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_rcc.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_utils.c \
-Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_ll_exti.c \
-Core/Src/system_stm32f4xx.c  
+Core/stm32f4xx_it.c \
+Core/system_stm32f4xx.c  
 
 # C++ sources
 CXX_SOURCES =  \
