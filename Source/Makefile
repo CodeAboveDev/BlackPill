@@ -40,7 +40,8 @@ system_stm32f4xx.c
 
 # C++ sources
 CXX_SOURCES =  \
-main.cpp 
+main.cpp \
+Mcu/Gpio.cpp \
 
 # ASM sources
 ASM_SOURCES =  \
