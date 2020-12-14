@@ -7,7 +7,11 @@ int main(void)
     Gpio &gpioC = *reinterpret_cast<Gpio *>(GPIOC_BASE);
 
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
+
+    gpioC.SetPinMode(1<<13, 1);
+
     while(1)
     {
+        
     }
 }
