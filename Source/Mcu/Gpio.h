@@ -25,7 +25,15 @@ public:
         Pin_12, Pin_13, Pin_14, Pin_15
     };
 
-    void SetPinMode(const Pin pin, const uint32_t Mode);
+    enum Mode
+    {
+        Input,
+        Output,
+        AlternateFunction,
+        Analog
+    };
+
+    void SetPinMode(const Pin pin, const Mode mode);
 
 private:
     volatile uint32_t MODER;

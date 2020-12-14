@@ -11,8 +11,8 @@
 #include "stm32f4xx.h"
 #include "Gpio.h"
 
-void Gpio::SetPinMode(const Pin pin, const uint32_t Mode)
+void Gpio::SetPinMode(const Pin pin, const Mode mode)
 {
     uint32_t pinMask = (1 << pin);
-    MODIFY_REG(MODER, (GPIO_MODER_MODER0 << (POSITION_VAL(pinMask) * 2U)), (Mode << (POSITION_VAL(pinMask) * 2U)));
+    MODIFY_REG(MODER, (GPIO_MODER_MODER0 << (POSITION_VAL(pinMask) * 2U)), (mode << (POSITION_VAL(pinMask) * 2U)));
 }
