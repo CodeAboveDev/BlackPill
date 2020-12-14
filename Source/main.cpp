@@ -6,6 +6,7 @@ int main(void)
 {
     Gpio &gpioC = *reinterpret_cast<Gpio *>(GPIOC_BASE);
 
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
     while(1)
     {
     }
