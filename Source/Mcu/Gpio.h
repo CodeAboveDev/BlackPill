@@ -17,7 +17,15 @@
 class Gpio
 {
 public:
-    void SetPinMode(const uint32_t Pin, const uint32_t Mode);
+    enum Pin
+    {
+        Pin_0,  Pin_1,  Pin_2,  Pin_3,
+        Pin_4,  Pin_5,  Pin_6,  Pin_7,
+        Pin_8,  Pin_9,  Pin_10, Pin_11,
+        Pin_12, Pin_13, Pin_14, Pin_15
+    };
+
+    void SetPinMode(const Pin pin, const uint32_t Mode);
 
 private:
     volatile uint32_t MODER;

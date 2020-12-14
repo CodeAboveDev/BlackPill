@@ -8,10 +8,10 @@ int main(void)
 
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
 
-    gpioC.SetPinMode(1<<13, 1);
+    gpioC.SetPinMode(Gpio::Pin::Pin_13, 1);
 
     while(1)
     {
-        
+
     }
 }
