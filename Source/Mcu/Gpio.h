@@ -16,6 +16,9 @@
 
 class Gpio
 {
+public:
+    void SetPinMode(const uint32_t Pin, const uint32_t Mode);
+
 private:
     volatile uint32_t MODER;
     volatile uint32_t OTYPER;
@@ -26,7 +29,7 @@ private:
     volatile uint32_t BSRR;
     volatile uint32_t LCKR;
     volatile uint32_t AFRL;
-    volatile uint32_t AFRH;    
+    volatile uint32_t AFRH;
 };
 
 static_assert(std::is_standard_layout<Gpio>::value, "Gpio class is NOT standard layout");
