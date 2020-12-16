@@ -11,11 +11,15 @@
 #ifndef Led_H
 #define Led_H
 
+#include "Mcu/Gpio.h"
+
 class Led
 {
 public:
+    Led(const Gpio& gpio);
 
 private:
+    const Gpio& gpio;
 
 };
 

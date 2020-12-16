@@ -9,3 +9,9 @@
  *                  opensource.org/licenses/BSD-3-Claus
  ****************************************************************/
 #include "Led.h"
+
+Led::Led(const Gpio& gpio)
+    : gpio(gpio)
+{
+
+}
