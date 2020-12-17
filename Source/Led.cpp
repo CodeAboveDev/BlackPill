@@ -10,18 +10,18 @@
  ****************************************************************/
 #include "Led.h"
 
-Led::Led(Gpio& gpio)
-    : gpio(gpio)
+Led::Led(GpioPin& pin)
+    : pin(pin)
 {
-    gpio.SetPinMode(Gpio::Pin::Pin_13, Gpio::Mode::Output);
+    pin.SetMode(Gpio::Output);
 }
 
 void Led::On(void)
 {
-    gpio.ResetPin(Gpio::Pin::Pin_13);
+    pin.Reset();
 }
 
 void Led::Off(void)
 {
-    gpio.SetPin(Gpio::Pin_13);
+    pin.Set();
 }

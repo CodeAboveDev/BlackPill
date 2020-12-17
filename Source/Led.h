@@ -16,14 +16,13 @@
 class Led
 {
 public:
-    Led(Gpio& gpio);
+    Led(GpioPin& pin);
 
     void On(void);
     void Off(void);
 
 private:
-    Gpio& gpio;
-
+    GpioPin& pin;
 };
 
 #endif // Led_H
