@@ -10,7 +10,7 @@
  ****************************************************************/
 #include "Led.h"
 
-Led::Led(const Gpio& gpio)
+Led::Led(Gpio& gpio)
     : gpio(gpio)
 {
 
