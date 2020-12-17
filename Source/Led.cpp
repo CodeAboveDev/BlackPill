@@ -16,4 +16,12 @@ Led::Led(Gpio& gpio)
     gpio.SetPinMode(Gpio::Pin::Pin_13, Gpio::Mode::Output);
 }
 
+void Led::On(void)
+{
+    gpio.ResetPin(Gpio::Pin::Pin_13);
+}
+
+void Led::Off(void)
+{
+    gpio.SetPin(Gpio::Pin_13);
 }
