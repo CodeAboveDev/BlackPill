@@ -50,6 +50,21 @@ private:
     volatile uint32_t AFRH;
 };
 
+class GpioPin
+{
+public:
+    GpioPin(Gpio& gpio, const Gpio::Pin pin);
+
+    void Set(void) const;
+    void Reset(void) const;
+
+    void SetMode(const Gpio::Mode mode) const;
+
+private:
+    Gpio& gpio;
+    const Gpio::Pin pin;
+};
+
 static_assert(std::is_standard_layout<Gpio>::value, "Gpio class is NOT standard layout");
 
 #endif // Gpio_H

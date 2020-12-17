@@ -26,3 +26,24 @@ void Gpio::ResetPin(const Pin pin)
 {
     BSRR |= ((1 << pin) << 16);
 }
+
+GpioPin::GpioPin(Gpio& gpio, const Gpio::Pin pin)
+    :gpio(gpio), pin(pin)
+{
+
+}
+
+void GpioPin::Set(void) const
+{
+    gpio.SetPin(pin);
+}
+
+void GpioPin::Reset(void) const
+{
+    gpio.ResetPin(pin);
+}
+
+void GpioPin::SetMode(const Gpio::Mode mode) const
+{
+    gpio.SetPinMode(pin, mode);
+}
