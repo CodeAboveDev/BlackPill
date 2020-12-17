@@ -17,6 +17,8 @@ class Led
 {
 public:
     Led(const Gpio& gpio);
+    void On(void);
+    void Off(void);
 
 private:
     const Gpio& gpio;

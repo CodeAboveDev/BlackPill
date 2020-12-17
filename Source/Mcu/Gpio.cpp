@@ -16,3 +16,13 @@ void Gpio::SetPinMode(const Pin pin, const Mode mode)
     uint32_t pinMask = (1 << pin);
     MODIFY_REG(MODER, (GPIO_MODER_MODER0 << (POSITION_VAL(pinMask) * 2U)), (mode << (POSITION_VAL(pinMask) * 2U)));
 }
+
+void Gpio::SetPin(const Pin pin)
+{
+    BSRR |= (1 << pin);
+}
+
+void Gpio::ResetPin(const Pin pin)
+{
+    BSRR |= ((1 << pin) << 16);
+}

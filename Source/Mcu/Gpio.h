@@ -34,6 +34,8 @@ public:
     };
 
     void SetPinMode(const Pin pin, const Mode mode);
+    void SetPin(const Pin pin);
+    void ResetPin(const Pin pin);
 
 private:
     volatile uint32_t MODER;
