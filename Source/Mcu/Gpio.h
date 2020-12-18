@@ -59,6 +59,8 @@ public:
     void Set(void) const;
     void Reset(void) const;
 
+    bool GetState(void) const;
+
     void SetMode(const Gpio::Mode mode) const;
 
 private:

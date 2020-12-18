@@ -48,6 +48,11 @@ void GpioPin::Reset(void) const
     gpio.ResetPin(pin);
 }
 
+bool GpioPin::GetState(void) const
+{
+    return gpio.ReadPin(pin);
+}
+
 void GpioPin::SetMode(const Gpio::Mode mode) const
 {
     gpio.SetPinMode(pin, mode);
