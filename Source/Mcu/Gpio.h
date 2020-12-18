@@ -33,7 +33,15 @@ public:
         Analog
     };
 
+    enum Pull
+    {
+        No,
+        Up,
+        Down
+    };
+
     void SetPinMode(const Pin pin, const Mode mode);
+    void SetPinPull(const Pin pin, const Pull pull);
     void SetPin(const Pin pin);
     bool ReadPin(const Pin pin);
     void ResetPin(const Pin pin);
@@ -62,6 +70,7 @@ public:
     bool GetState(void) const;
 
     void SetMode(const Gpio::Mode mode) const;
+    void SetPull(const Gpio::Pull pull) const;
 
 private:
     Gpio& gpio;

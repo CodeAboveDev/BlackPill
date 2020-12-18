@@ -17,6 +17,12 @@ void Gpio::SetPinMode(const Pin pin, const Mode mode)
     MODIFY_REG(MODER, (GPIO_MODER_MODER0 << (POSITION_VAL(pinMask) * 2U)), (mode << (POSITION_VAL(pinMask) * 2U)));
 }
 
+void Gpio::SetPinPull(const Pin pin, const Pull pull)
+{
+    uint32_t pinMask = (1 << pin);
+    MODIFY_REG(PUPDR, (GPIO_PUPDR_PUPDR0 << (POSITION_VAL(pinMask) * 2U)), (pull << (POSITION_VAL(pinMask) * 2U)));
+}
+
 void Gpio::SetPin(const Pin pin)
 {
     BSRR |= (1 << pin);
@@ -56,4 +62,9 @@ bool GpioPin::GetState(void) const
 void GpioPin::SetMode(const Gpio::Mode mode) const
 {
     gpio.SetPinMode(pin, mode);
+}
+
+void GpioPin::SetPull(const Gpio::Pull pull) const
+{
+    gpio.SetPinPull(pin, pull);
 }
