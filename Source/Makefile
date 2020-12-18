@@ -42,6 +42,7 @@ system_stm32f4xx.c
 CXX_SOURCES =  \
 main.cpp \
 Led.cpp \
+Switch.cpp \
 Mcu/Gpio.cpp \
 
 # ASM sources
