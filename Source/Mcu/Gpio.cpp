@@ -27,6 +27,11 @@ void Gpio::ResetPin(const Pin pin)
     BSRR |= ((1 << pin) << 16);
 }
 
+bool Gpio::ReadPin(const Pin pin)
+{
+    return (IDR & (1 << pin)) == 0 ? false : true;
+}
+
 GpioPin::GpioPin(Gpio& gpio, const Gpio::Pin pin)
     :gpio(gpio), pin(pin)
 {
