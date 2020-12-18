@@ -43,3 +43,7 @@ build/
 # Ignore all local history of files
 .history
 .ionide
+
+### Segger Ozone ###
+*.jdebug
+*.jdebug.user
