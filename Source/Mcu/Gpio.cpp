@@ -13,14 +13,12 @@
 
 void Gpio::SetPinMode(const Pin pin, const Mode mode)
 {
-    uint32_t pinMask = (1 << pin);
-    MODIFY_REG(MODER, (GPIO_MODER_MODER0 << (POSITION_VAL(pinMask) * 2U)), (mode << (POSITION_VAL(pinMask) * 2U)));
+    MODER = ((MODER & ~(0x00000003 << (pin * 2))) | (mode << (pin * 2)));
 }
 
 void Gpio::SetPinPull(const Pin pin, const Pull pull)
 {
-    uint32_t pinMask = (1 << pin);
-    MODIFY_REG(PUPDR, (GPIO_PUPDR_PUPDR0 << (POSITION_VAL(pinMask) * 2U)), (pull << (POSITION_VAL(pinMask) * 2U)));
+    PUPDR = ((PUPDR & ~(0x00000003 << (pin * 2))) | (pull << (pin * 2)));
 }
 
 void Gpio::SetPin(const Pin pin)
