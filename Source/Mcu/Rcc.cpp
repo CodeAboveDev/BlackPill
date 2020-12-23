@@ -13,6 +13,11 @@
 void Rcc::EnableHighSpeedInternalClock(void)
 {
     CR.bits.HSION = 1;
+
+    while(CR.bits.HSIRDY != 1)
+    {
+        // Wait for it!
+    }
 }
 
 void Rcc::SetHighSpeedInternalClockTrimming(uint8_t trimming)
