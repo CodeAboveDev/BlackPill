@@ -11,6 +11,23 @@
 #ifndef Flash_H
 #define Flash_H
 
+#include <stdint.h>
+#include <type_traits>
 
+class Flash
+{
+public:
+
+
+private:
+    volatile uint32_t ACR;
+    volatile uint32_t KEYR;
+    volatile uint32_t OPTKEYR;
+    volatile uint32_t SR;
+    volatile uint32_t CR;
+    volatile uint32_t OPTCR;
+};
+
+static_assert(std::is_standard_layout<Flash>::value, "Flash class is NOT standard layout");
 
 #endif // Flash_H
