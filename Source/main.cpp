@@ -2,6 +2,7 @@
 #include "Mcu/Flash.h"
 #include "Mcu/Gpio.h"
 #include "Mcu/Pwr.h"
+#include "Mcu/Rcc.h"
 #include "Led.h"
 #include "Switch.h"
 #include "stm32f4xx.h"
@@ -22,6 +23,10 @@ int main(void)
 
     Pwr &pwr = *reinterpret_cast<Pwr *>(PWR_BASE);
     pwr.SetRegulatorVoltageScaling(Pwr::RegulatorVoltageScaling::Scale_1);
+
+    Rcc &rcc = *reinterpret_cast<Rcc *>(RCC_BASE);
+    rcc.SetHighSpeedInternalClockTrimming(16);
+    rcc.EnableHighSpeedInternalClock();
 
     Led blueLed(pinC13);
     Switch userSwitch(pinA0);
