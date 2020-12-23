@@ -14,3 +14,8 @@ void Rcc::EnableHighSpeedInternalClock(void)
 {
     CR.bits.HSION = 1;
 }
+
+void Rcc::SetHighSpeedInternalClockTrimming(uint8_t trimming)
+{
+    CR.bits.HSITRIM = trimming;
+}

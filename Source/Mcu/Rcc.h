@@ -18,6 +18,7 @@ class Rcc
 {
 public:
     void EnableHighSpeedInternalClock(void);
+    void SetHighSpeedInternalClockTrimming(uint8_t trimming);
 
 private:
     union CR_register
