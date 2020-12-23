@@ -17,7 +17,7 @@
 class Rcc
 {
 public:
-
+    void EnableHighSpeedInternalClock(void);
 
 private:
     union CR_register

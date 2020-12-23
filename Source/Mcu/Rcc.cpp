@@ -9,3 +9,8 @@
  *                  opensource.org/licenses/BSD-3-Claus
  ****************************************************************/
 #include "Rcc.h"
+
+void Rcc::EnableHighSpeedInternalClock(void)
+{
+    CR.bits.HSION = 1;
+}
