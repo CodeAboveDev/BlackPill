@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include "Mcu/Flash.h"
 #include "Mcu/Gpio.h"
 #include "Led.h"
 #include "Switch.h"
@@ -10,6 +11,9 @@ int main(void)
     Gpio &gpioA = *reinterpret_cast<Gpio *>(GPIOA_BASE);
     GpioPin pinC13 {gpioC, Gpio::Pin::Pin_13};
     GpioPin pinA0 {gpioA, Gpio::Pin::Pin_0};
+
+    Flash &flash = *reinterpret_cast<Flash *>(FLASH_R_BASE);
+    flash.SetLatency(Flash::WaitStates::WS_3);
 
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
