@@ -20,7 +20,32 @@ public:
 
 
 private:
-    uint32_t CR;
+    union CR_register
+    {
+        struct CR_bits
+        {
+            uint8_t HSION : 1;
+            const uint8_t HSIRDY : 1;
+            const uint8_t Reserved1 : 1;
+            uint8_t HSITRIM : 5;
+            const uint8_t HSICAL : 8;
+            uint8_t HSEON : 1;
+            const uint8_t HSERDY : 1;
+            uint8_t HSEBYP : 1;
+            uint8_t CSSON : 1;
+            const uint8_t Reserved2 : 4;
+            uint8_t PLLON : 1;
+            const uint8_t PLLRDY : 1;
+            uint8_t PLLI2SON : 1;
+            const uint8_t PLLI2SRDY : 1;
+            const uint8_t Reserved3 : 4;
+        };
+
+        uint32_t value;
+        struct CR_bits bits;
+    };
+
+    volatile union CR_register CR;
     volatile uint32_t PLLCFGR;
     volatile uint32_t CFGR;
     volatile uint32_t CIR;
