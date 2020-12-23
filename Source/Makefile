@@ -45,6 +45,7 @@ Led.cpp \
 Switch.cpp \
 Mcu/Gpio.cpp \
 Mcu/Flash.cpp \
+Mcu/Pwr.cpp
 
 # ASM sources
 ASM_SOURCES =  \
