@@ -12,10 +12,7 @@
 
 void Flash::SetLatency(WaitStates ws)
 {
-    ACR = ((ACR & ~0x0000000F) | ws);
+    ACR.bits.LATENCY = ws;
 
-    while((ACR & 0x0000000F) != ws) 
-    {
-        /* Wait for it! */ 
-    }
+    while(ACR.bits.LATENCY != ws) {}
 }

@@ -25,13 +25,31 @@ public:
         WS_3, // 4 CPU cycles
         WS_4, // 5 CPU cycles
         WS_5, // 6 CPU cycles
-        WS_6  // 7 CPU cycles
+        WS_6, // 7 CPU cycles
     };
 
     void SetLatency(WaitStates ws);
 
 private:
-    volatile uint32_t ACR;
+    union ACR_register
+    {
+        struct ACR_bits
+        {
+            WaitStates LATENCY : 4;
+            uint8_t Reserved0  : 4;
+            uint8_t PRFTEN     : 1;
+            uint8_t ICEN       : 1;
+            uint8_t DCEN       : 1;
+            uint8_t ICRST      : 1;
+            uint8_t DCRST      : 1;
+            uint32_t Reserved1 : 19;
+        };        
+        
+        uint32_t value;
+        struct ACR_bits bits;
+    };
+
+    volatile union ACR_register ACR;
     volatile uint32_t KEYR;
     volatile uint32_t OPTKEYR;
     volatile uint32_t SR;
