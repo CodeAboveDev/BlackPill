@@ -1,12 +1,17 @@
 #include <stdint.h>
 #include "Mcu/Flash.h"
 #include "Mcu/Gpio.h"
+#include "Mcu/Pwr.h"
 #include "Led.h"
 #include "Switch.h"
 #include "stm32f4xx.h"
 
 int main(void)
 {
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
+    RCC->APB1ENR |= RCC_APB1ENR_PWREN;
+
     Gpio &gpioC = *reinterpret_cast<Gpio *>(GPIOC_BASE);
     Gpio &gpioA = *reinterpret_cast<Gpio *>(GPIOA_BASE);
     GpioPin pinC13 {gpioC, Gpio::Pin::Pin_13};
@@ -15,8 +20,8 @@ int main(void)
     Flash &flash = *reinterpret_cast<Flash *>(FLASH_R_BASE);
     flash.SetLatency(Flash::WaitStates::WS_3);
 
-    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
-    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
+    Pwr &pwr = *reinterpret_cast<Pwr *>(PWR_BASE);
+    pwr.SetRegulatorVoltageScaling(Pwr::RegulatorVoltageScaling::Scale_1);
 
     Led blueLed(pinC13);
     Switch userSwitch(pinA0);
