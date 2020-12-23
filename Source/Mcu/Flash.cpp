@@ -10,3 +10,12 @@
  ****************************************************************/
 #include "Flash.h"
 
+void Flash::SetLatency(WaitStates ws)
+{
+    ACR = ((ACR & ~0x0000000F) | ws);
+
+    while((ACR & 0x0000000F) != ws) 
+    {
+        /* Wait for it! */ 
+    }
+}

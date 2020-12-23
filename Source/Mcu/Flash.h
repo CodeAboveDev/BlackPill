@@ -17,7 +17,18 @@
 class Flash
 {
 public:
+    enum WaitStates
+    {
+        WS_0, // 1 CPU cycle
+        WS_1, // 2 CPU cycles
+        WS_2, // 3 CPU cycles
+        WS_3, // 4 CPU cycles
+        WS_4, // 5 CPU cycles
+        WS_5, // 6 CPU cycles
+        WS_6  // 7 CPU cycles
+    };
 
+    void SetLatency(WaitStates ws);
 
 private:
     volatile uint32_t ACR;
