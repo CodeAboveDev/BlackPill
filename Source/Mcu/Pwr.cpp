@@ -10,3 +10,7 @@
  ****************************************************************/
 #include "Pwr.h"
 
+void Pwr::SetRegulatorVoltageScaling(RegulatorVoltageScaling rvs)
+{
+    CR.bits.VOS = rvs;
+}
