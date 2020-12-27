@@ -25,8 +25,7 @@ int main(void)
     pwr.SetRegulatorVoltageScaling(Pwr::RegulatorVoltageScaling::Scale_1);
 
     Rcc &rcc = *reinterpret_cast<Rcc *>(RCC_BASE);
-    rcc.SetHighSpeedInternalClockTrimming(16);
-    rcc.EnableHighSpeedInternalClock();
+    rcc.EnableHighSpeedExternalClock();
 
     Led blueLed(pinC13);
     Switch userSwitch(pinA0);
