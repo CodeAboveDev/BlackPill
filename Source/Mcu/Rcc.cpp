@@ -24,3 +24,14 @@ void Rcc::SetHighSpeedInternalClockTrimming(uint8_t trimming)
 {
     CR.bits.HSITRIM = trimming;
 }
+
+void Rcc::EnableHighSpeedExternalClock(void)
+{
+    CR.bits.HSEON = 1;
+
+    while(CR.bits.HSERDY != 1)
+    {
+        // Wait for it!
+    }
+}
+
