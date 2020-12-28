@@ -26,6 +26,7 @@ int main(void)
 
     Rcc &rcc = *reinterpret_cast<Rcc *>(RCC_BASE);
     rcc.EnableHighSpeedExternalClock();
+    rcc.ConfigurePll(Rcc::PllClockSource::HSE, Rcc::PllFactors(12, 96, Rcc::PllFactorP::P_2));
 
     Led blueLed(pinC13);
     Switch userSwitch(pinA0);
