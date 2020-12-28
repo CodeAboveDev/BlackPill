@@ -123,9 +123,31 @@ private:
         struct PLLCFGR_bits bits;
     };
 
+    union CFGR_register
+    {
+        struct CFGR_bits
+        {
+            uint8_t SW : 2;
+            const uint8_t SWS : 2;
+            AhbPrescaler HPRE : 4;
+            const uint8_t Reserved1 : 2;
+            Apb1Prescaler PPRE1 : 3;
+            Apb2Prescaler PPRE2 : 3;
+            uint8_t RTCPRE : 5;
+            uint8_t MCO1 : 2;
+            uint8_t I2SSCR : 1;
+            uint8_t MCO1PRE : 3;
+            uint8_t MCO2PRE : 3;
+            uint8_t MCO2 : 2; 
+        };
+
+        uint32_t value;
+        struct CFGR_bits bits;
+    };
+
     volatile union CR_register CR;
     volatile union PLLCFGR_register PLLCFGR;
-    volatile uint32_t CFGR;
+    volatile union CFGR_register CFGR;
     volatile uint32_t CIR;
     volatile uint32_t AHB1RSTR;
     volatile uint32_t AHB2RSTR;
