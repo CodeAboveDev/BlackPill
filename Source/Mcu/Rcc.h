@@ -17,6 +17,12 @@
 class Rcc
 {
 public:
+    enum PllClockSource
+    {
+        HSI,
+        HSE,
+    };
+
     void EnableHighSpeedInternalClock(void);
     void SetHighSpeedInternalClockTrimming(uint8_t trimming);
 
