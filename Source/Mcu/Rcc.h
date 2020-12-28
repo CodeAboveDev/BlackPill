@@ -54,8 +54,27 @@ private:
         struct CR_bits bits;
     };
 
+    union PLLCFGR_register
+    {
+        struct PLLCFGR_bits
+        {
+            uint8_t PLLM : 6;
+            uint16_t PLLN : 9;
+            const uint8_t Reserved1 : 1;
+            uint8_t PLLP : 2;
+            const uint8_t Reserved2 : 4;
+            PllClockSource PLLSRC : 1;
+            const uint8_t Reserved3 : 1;
+            uint8_t PLLQ : 4;
+            const uint8_t Reserved4 : 4;
+        };
+
+        uint32_t value;
+        struct PLLCFGR_bits bits;
+    };
+
     volatile union CR_register CR;
-    volatile uint32_t PLLCFGR;
+    volatile union PLLCFGR_register PLLCFGR;
     volatile uint32_t CFGR;
     volatile uint32_t CIR;
     volatile uint32_t AHB1RSTR;
