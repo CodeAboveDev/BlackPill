@@ -23,10 +23,28 @@ public:
         HSE,
     };
 
+    enum PllFactorP
+    {
+        P_2 = 0b00,
+        P_4 = 0b01,
+        P_6 = 0b10,
+        P_8 = 0b11,
+    };
+
+    struct PllFactors
+    {
+        uint8_t m;
+        uint16_t n;
+        PllFactorP p;
+        PllFactors(uint8_t m, uint16_t n, PllFactorP p): m(m), n(n), p(p) {};
+    };
+
     void EnableHighSpeedInternalClock(void);
     void SetHighSpeedInternalClockTrimming(uint8_t trimming);
 
     void EnableHighSpeedExternalClock(void);
+
+    void ConfigurePll(PllClockSource source, PllFactors factors);
 
 private:
     union CR_register
@@ -109,6 +127,10 @@ private:
     volatile uint32_t PLLI2SCFGR;
     volatile uint32_t Reserved15;
     volatile uint32_t DCKCFGR;
+
+    void SetPllClockSource(PllClockSource source);
+    void SetPllFactors(PllFactors factors);
+    
 };
 
 static_assert(std::is_standard_layout<Rcc>::value, "Rcc class is NOT standard layout");

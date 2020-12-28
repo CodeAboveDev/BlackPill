@@ -35,3 +35,21 @@ void Rcc::EnableHighSpeedExternalClock(void)
     }
 }
 
+void Rcc::ConfigurePll(PllClockSource source, PllFactors factors)
+{
+    SetPllClockSource(source);
+    SetPllFactors(factors);
+}
+
+void Rcc::SetPllClockSource(PllClockSource source)
+{
+    PLLCFGR.bits.PLLSRC = source;
+}
+
+void Rcc::SetPllFactors(PllFactors factors)
+{
+    PLLCFGR.bits.PLLM = factors.m;
+    PLLCFGR.bits.PLLN = factors.n;
+    PLLCFGR.bits.PLLP = factors.p;
+}
+
