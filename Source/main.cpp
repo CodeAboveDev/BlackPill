@@ -28,6 +28,9 @@ int main(void)
     rcc.EnableHighSpeedExternalClock();
     rcc.ConfigurePll(Rcc::PllClockSource::HSE, Rcc::PllFactors(12, 96, Rcc::PllFactorP::P_2));
     rcc.EnablePll();
+    rcc.SetAhbPrescaler(Rcc::AhbPrescaler::Prescaler_1);
+    rcc.SetApb1Prescaler(Rcc::Apb1Prescaler::Prescaler_2);
+    rcc.SetApb2Prescaler(Rcc::Apb2Prescaler::Prescaler_1);
 
     Led blueLed(pinC13);
     Switch userSwitch(pinA0);
