@@ -31,6 +31,37 @@ public:
         P_8 = 0b11,
     };
 
+    enum class AhbPrescaler
+    {
+        Prescaler_1   = 0b0000,
+        Prescaler_2   = 0b1000,
+        Prescaler_4   = 0b1001,
+        Prescaler_8   = 0b1010,
+        Prescaler_16  = 0b1011,
+        Prescaler_64  = 0b1100,
+        Prescaler_128 = 0b1101,
+        Prescaler_256 = 0b1110,
+        Prescaler_512 = 0b1111,
+    };
+
+    enum class Apb1Prescaler
+    {
+        Prescaler_1  = 0b000,
+        Prescaler_2  = 0b100,
+        Prescaler_4  = 0b101,
+        Prescaler_8  = 0b110,
+        Prescaler_16 = 0b111,
+    };
+    
+    enum class Apb2Prescaler
+    {
+        Prescaler_1  = 0b000,
+        Prescaler_2  = 0b100,
+        Prescaler_4  = 0b101,
+        Prescaler_8  = 0b110,
+        Prescaler_16 = 0b111,
+    };
+
     struct PllFactors
     {
         uint8_t m;
