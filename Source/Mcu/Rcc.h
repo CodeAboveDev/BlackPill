@@ -44,6 +44,7 @@ public:
 
     void EnableHighSpeedExternalClock(void);
 
+    void EnablePll(void);
     void ConfigurePll(PllClockSource source, PllFactors factors);
 
 private:

@@ -35,6 +35,16 @@ void Rcc::EnableHighSpeedExternalClock(void)
     }
 }
 
+void Rcc::EnablePll(void)
+{
+    CR.bits.PLLON = 1;
+
+    while(CR.bits.PLLRDY != 1)
+    {
+        // Wait for it!
+    }
+}
+
 void Rcc::ConfigurePll(PllClockSource source, PllFactors factors)
 {
     SetPllClockSource(source);
