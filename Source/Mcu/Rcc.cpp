@@ -51,6 +51,21 @@ void Rcc::ConfigurePll(PllClockSource source, PllFactors factors)
     SetPllFactors(factors);
 }
 
+void Rcc::SetAhbPrescaler(AhbPrescaler prescaler)
+{
+    CFGR.bits.HPRE = prescaler;
+}
+
+void Rcc::SetApb1Prescaler(Apb1Prescaler prescaler)
+{
+    CFGR.bits.PPRE1 = prescaler;
+}
+
+void Rcc::SetApb2Prescaler(Apb2Prescaler prescaler)
+{
+    CFGR.bits.PPRE2 = prescaler;
+}
+
 void Rcc::SetPllClockSource(PllClockSource source)
 {
     PLLCFGR.bits.PLLSRC = source;

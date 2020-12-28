@@ -78,6 +78,10 @@ public:
     void EnablePll(void);
     void ConfigurePll(PllClockSource source, PllFactors factors);
 
+    void SetAhbPrescaler(AhbPrescaler prescaler);
+    void SetApb1Prescaler(Apb1Prescaler prescaler);
+    void SetApb2Prescaler(Apb2Prescaler prescaler);
+
 private:
     union CR_register
     {
