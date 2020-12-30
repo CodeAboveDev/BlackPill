@@ -62,6 +62,13 @@ public:
         Prescaler_16 = 0b111,
     };
 
+    enum class SystemClockSource : uint8_t
+    {
+        HSI,
+        HSE,
+        PLL,
+    };
+
     struct PllFactors
     {
         uint8_t m;
@@ -131,8 +138,8 @@ private:
     {
         struct CFGR_bits
         {
-            uint8_t SW : 2;
-            const uint8_t SWS : 2;
+            SystemClockSource SW : 2;
+            const SystemClockSource SWS : 2;
             AhbPrescaler HPRE : 4;
             const uint8_t Reserved1 : 2;
             Apb1Prescaler PPRE1 : 3;
