@@ -89,6 +89,8 @@ public:
     void SetApb1Prescaler(Apb1Prescaler prescaler);
     void SetApb2Prescaler(Apb2Prescaler prescaler);
 
+    void SetSystemClockSource(SystemClockSource source);
+
 private:
     union CR_register
     {

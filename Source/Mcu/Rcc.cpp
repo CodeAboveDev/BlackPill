@@ -66,6 +66,16 @@ void Rcc::SetApb2Prescaler(Apb2Prescaler prescaler)
     CFGR.bits.PPRE2 = prescaler;
 }
 
+void Rcc::SetSystemClockSource(SystemClockSource source)
+{
+    CFGR.bits.SW = source;
+
+    while(CFGR.bits.SWS != source)
+    {
+        // Wait for it!
+    }
+}
+
 void Rcc::SetPllClockSource(PllClockSource source)
 {
     PLLCFGR.bits.PLLSRC = source;
