@@ -11,6 +11,14 @@
 #ifndef Systick_H
 #define Systick_H
 
+class Systick
+{
+public:
 
+
+private:
+    
+
+};
 
 #endif // Systick_H
