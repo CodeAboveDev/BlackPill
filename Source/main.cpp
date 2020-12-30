@@ -31,6 +31,7 @@ int main(void)
     rcc.SetAhbPrescaler(Rcc::AhbPrescaler::Prescaler_1);
     rcc.SetApb1Prescaler(Rcc::Apb1Prescaler::Prescaler_2);
     rcc.SetApb2Prescaler(Rcc::Apb2Prescaler::Prescaler_1);
+    rcc.SetSystemClockSource(Rcc::SystemClockSource::PLL);
 
     Led blueLed(pinC13);
     Switch userSwitch(pinA0);
