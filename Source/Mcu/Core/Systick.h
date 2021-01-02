@@ -35,6 +35,11 @@ private:
         uint32_t value;
         struct CTRL_bits bits;
     };
+
+    volatile union CTRL_register CTRL;
+    volatile uint32_t LOAD;
+    volatile uint32_t VAL;
+    volatile uint32_t CALIB;
 };
 
 static_assert(std::is_standard_layout<Systick>::value, "Systick class is NOT standard layout");
