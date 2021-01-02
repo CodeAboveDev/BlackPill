@@ -20,8 +20,21 @@ public:
 
 
 private:
-    
+    union CTRL_register
+    {
+        struct CTRL_bits
+        {
+            uint8_t ENABLE : 1;
+            uint8_t TICKINT : 1;
+            uint8_t CLKSOURCE : 1;
+            uint16_t Reserved1 : 13;
+            uint8_t COUNTFLAG : 1;
+            uint16_t Reserved2 : 15;
+        };
 
+        uint32_t value;
+        struct CTRL_bits bits;
+    };
 };
 
 static_assert(std::is_standard_layout<Systick>::value, "Systick class is NOT standard layout");
