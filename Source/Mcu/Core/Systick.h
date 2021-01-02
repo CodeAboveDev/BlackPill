@@ -11,6 +11,9 @@
 #ifndef Systick_H
 #define Systick_H
 
+#include <stdint.h>
+#include <type_traits>
+
 class Systick
 {
 public:
@@ -20,5 +23,7 @@ private:
     
 
 };
+
+static_assert(std::is_standard_layout<Systick>::value, "Systick class is NOT standard layout");
 
 #endif // Systick_H
