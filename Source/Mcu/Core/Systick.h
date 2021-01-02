@@ -17,7 +17,7 @@
 class Systick
 {
 public:
-
+    void Enable(void);
 
 private:
     union CTRL_register

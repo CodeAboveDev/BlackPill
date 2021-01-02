@@ -9,3 +9,8 @@
  *                  opensource.org/licenses/BSD-3-Claus
  ****************************************************************/
 #include "Systick.h"
+
+void Systick::Enable(void)
+{
+    CTRL.bits.ENABLE = 1;
+}
