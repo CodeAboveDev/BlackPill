@@ -24,6 +24,7 @@ public:
     };
 
     void Enable(void);
+    void SetClockSource(const ClockSource source);
 
 private:
     union CTRL_register
