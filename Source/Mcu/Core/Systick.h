@@ -17,6 +17,12 @@
 class Systick
 {
 public:
+    enum class ClockSource : uint8_t
+    {
+        AHB_dividedBy8,
+        AHB
+    };
+
     void Enable(void);
 
 private:
@@ -26,7 +32,7 @@ private:
         {
             uint8_t ENABLE : 1;
             uint8_t TICKINT : 1;
-            uint8_t CLKSOURCE : 1;
+            ClockSource CLKSOURCE : 1;
             uint16_t Reserved1 : 13;
             uint8_t COUNTFLAG : 1;
             uint16_t Reserved2 : 15;
