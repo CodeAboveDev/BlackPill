@@ -33,9 +33,9 @@ private:
             uint8_t ENABLE : 1;
             uint8_t TICKINT : 1;
             ClockSource CLKSOURCE : 1;
-            uint16_t Reserved1 : 13;
+            const uint16_t Reserved1 : 13;
             uint8_t COUNTFLAG : 1;
-            uint16_t Reserved2 : 15;
+            const uint16_t Reserved2 : 15;
         };
 
         uint32_t value;
