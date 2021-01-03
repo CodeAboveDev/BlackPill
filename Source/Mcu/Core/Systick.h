@@ -44,8 +44,20 @@ private:
         struct CTRL_bits bits;
     };
 
+    union LOAD_register
+    {
+        struct LOAD_bits
+        {
+            uint32_t RELOAD : 24;
+            const uint8_t Reserved : 8;
+        };
+
+        uint32_t value;
+        struct LOAD_bits bits;
+    };
+
     volatile union CTRL_register CTRL;
-    volatile uint32_t LOAD;
+    volatile union LOAD_register LOAD;
     volatile uint32_t VAL;
     volatile uint32_t CALIB;
 };
