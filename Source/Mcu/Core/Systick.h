@@ -24,6 +24,7 @@ public:
     };
 
     void Enable(void);
+    void EnableInterrupt(void);
     void SetClockSource(const ClockSource source);
 
 private:

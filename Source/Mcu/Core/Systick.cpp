@@ -15,7 +15,13 @@ void Systick::Enable(void)
     CTRL.bits.ENABLE = 1;
 }
 
+void Systick::EnableInterrupt(void)
+{
+    CTRL.bits.TICKINT = 1;
+}
+
 void Systick::SetClockSource(const ClockSource source)
 {
     CTRL.bits.CLKSOURCE = source;
 }
+
