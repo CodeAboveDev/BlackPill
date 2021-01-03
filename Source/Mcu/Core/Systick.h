@@ -26,6 +26,8 @@ public:
     void Enable(void);
     void EnableInterrupt(void);
     void SetClockSource(const ClockSource source);
+    void SetReload(const uint32_t reload);
+    void SetReload1msTick(const uint32_t clockFrequency);
 
 private:
     union CTRL_register

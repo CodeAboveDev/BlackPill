@@ -25,3 +25,13 @@ void Systick::SetClockSource(const ClockSource source)
     CTRL.bits.CLKSOURCE = source;
 }
 
+void Systick::SetReload(const uint32_t reload)
+{
+    // Prevent writing more than 24 bits by 0x00FFFFFF mask
+    LOAD.bits.RELOAD = (reload & 0x00FFFFFF);
+}
+
+void Systick::SetReload1msTick(const uint32_t clockFrequency)
+{
+    SetReload((clockFrequency / 1000) - 1);
+}
