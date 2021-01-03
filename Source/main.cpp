@@ -3,6 +3,7 @@
 #include "Mcu/Gpio.h"
 #include "Mcu/Pwr.h"
 #include "Mcu/Rcc.h"
+#include "Mcu/Core/Systick.h"
 #include "Led.h"
 #include "Switch.h"
 #include "stm32f4xx.h"
@@ -32,6 +33,12 @@ int main(void)
     rcc.SetApb1Prescaler(Rcc::Apb1Prescaler::Prescaler_2);
     rcc.SetApb2Prescaler(Rcc::Apb2Prescaler::Prescaler_1);
     rcc.SetSystemClockSource(Rcc::SystemClockSource::PLL);
+
+    Systick &systick = *reinterpret_cast<Systick *>(SysTick_BASE);
+    systick.SetReload1msTick(100000000);
+    systick.SetClockSource(Systick::ClockSource::AHB);
+    systick.EnableInterrupt();
+    systick.Enable();
 
     Led blueLed(pinC13);
     Switch userSwitch(pinA0);
