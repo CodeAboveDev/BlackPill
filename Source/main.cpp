@@ -42,19 +42,28 @@ int main(void)
 
     Led blueLed(pinC13);
     Switch userSwitch(pinA0);
-    blueLed.On();
-    blueLed.Off();
 
     while(1)
     {
-        if(userSwitch.GetState() == true)
-        {
-            blueLed.On();
-        }
-        else
-        {
-            blueLed.Off();
-        }
         
+    }
+}
+
+extern "C" void SysTick_Handler(void)
+{
+    static uint16_t cnt = 0u;
+    Gpio &gpioC = *reinterpret_cast<Gpio *>(GPIOC_BASE);
+    GpioPin pinC13 {gpioC, Gpio::Pin::Pin_13};
+    Led blueLed(pinC13);
+
+    cnt += 1;
+    if(cnt == 500)
+    {
+        blueLed.On();
+    }
+    else if(cnt == 1000)
+    {
+        blueLed.Off();
+        cnt = 0;
     }
 }
