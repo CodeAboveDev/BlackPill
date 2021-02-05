@@ -17,6 +17,17 @@
 class Spi
 {
 public:
+    enum class BaudRate : uint8_t
+    {
+        PCLK_div2   = 0b000,
+        PCLK_div4   = 0b001,
+        PCLK_div8   = 0b010,
+        PCLK_div16  = 0b011,
+        PCLK_div32  = 0b100,
+        PCLK_div64  = 0b101,
+        PCLK_div128 = 0b110,
+        PCLK_div256 = 0b111,
+    };
 
 
 private:
@@ -27,7 +38,7 @@ private:
             uint8_t CPHA : 1;
             uint8_t CPOL : 1;
             uint8_t MSTR : 1;
-            uint8_t BR : 3;
+            BaudRate BR : 3;
             uint8_t SPE : 1;
             uint8_t LSBFIRST : 1;
             uint8_t SSI : 1;
