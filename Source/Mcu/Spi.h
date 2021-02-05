@@ -20,7 +20,31 @@ public:
 
 
 private:
-    volatile uint32_t CR1;
+    union CR1_register
+    {
+        struct CR1_bits
+        {
+            uint8_t CPHA : 1;
+            uint8_t CPOL : 1;
+            uint8_t MSTR : 1;
+            uint8_t BR : 3;
+            uint8_t SPE : 1;
+            uint8_t LSBFIRST : 1;
+            uint8_t SSI : 1;
+            uint8_t SSM : 1;
+            uint8_t RXONLY : 1;
+            uint8_t DFF : 1;
+            uint8_t CRCNEXT : 1;
+            uint8_t CRCEN : 1;
+            uint8_t BIDIOE : 1;
+            uint8_t BIDIMODE : 1;
+        };
+
+        uint32_t value;
+        struct CR1_bits bits;
+    };
+
+    volatile union CR1_register CR1;
     volatile uint32_t SR;
     volatile uint32_t DR;
     volatile uint32_t CRCPR;
