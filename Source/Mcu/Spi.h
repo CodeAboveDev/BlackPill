@@ -29,15 +29,30 @@ public:
         PCLK_div256 = 0b111,
     };
 
+    enum class ClockPolarity : uint8_t
+    {
+        Idle_0,
+        Idle_1,
+    };
+
+    enum class ClockPhase : uint8_t
+    {
+        FirstClockTransition,
+        SecondClockTransition,
+    };
+
     void SetBaudRate(BaudRate baudrate);
+
+    void SetClockPolarity(ClockPolarity polarity);
+    void SetClockPhase(ClockPhase phase);
 
 private:
     union CR1_register
     {
         struct CR1_bits
         {
-            uint8_t CPHA : 1;
-            uint8_t CPOL : 1;
+            ClockPhase CPHA : 1;
+            ClockPolarity CPOL : 1;
             uint8_t MSTR : 1;
             BaudRate BR : 3;
             uint8_t SPE : 1;

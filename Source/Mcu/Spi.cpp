@@ -15,3 +15,12 @@ void Spi::SetBaudRate(BaudRate baudrate)
     CR1.bits.BR = baudrate;
 }
 
+void Spi::SetClockPolarity(ClockPolarity polarity)
+{
+    CR1.bits.CPOL = polarity;
+}
+
+void Spi::SetClockPhase(ClockPhase phase)
+{
+    CR1.bits.CPHA = phase;
+}
