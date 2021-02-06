@@ -29,6 +29,7 @@ public:
         PCLK_div256 = 0b111,
     };
 
+    void SetBaudRate(BaudRate baudrate);
 
 private:
     union CR1_register

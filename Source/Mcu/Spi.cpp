@@ -10,4 +10,8 @@
  ****************************************************************/
 #include "Spi.h"
 
+void Spi::SetBaudRate(BaudRate baudrate)
+{
+    CR1.bits.BR = baudrate;
+}
 
