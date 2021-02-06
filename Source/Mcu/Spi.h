@@ -31,14 +31,14 @@ public:
 
     enum class ClockPolarity : uint8_t
     {
-        Idle_0,
-        Idle_1,
+        CPOL_0,
+        CPOL_1,
     };
 
     enum class ClockPhase : uint8_t
     {
-        FirstClockTransition,
-        SecondClockTransition,
+        CPHA_0,
+        CPHA_1,
     };
 
     void SetBaudRate(BaudRate baudrate);
