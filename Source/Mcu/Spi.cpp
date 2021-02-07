@@ -24,3 +24,8 @@ void Spi::SetClockPhase(ClockPhase phase)
 {
     CR1.bits.CPHA = phase;
 }
+
+void Spi::SetDataFrameFormat(DataFrameFormat format)
+{
+    CR1.bits.DFF = format;
+}

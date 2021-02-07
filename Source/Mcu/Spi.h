@@ -41,10 +41,18 @@ public:
         CPHA_1,
     };
 
+    enum class DataFrameFormat : uint8_t
+    {
+        Format_8BitData,
+        Format_16BitData,
+    };
+
     void SetBaudRate(BaudRate baudrate);
 
     void SetClockPolarity(ClockPolarity polarity);
     void SetClockPhase(ClockPhase phase);
+
+    void SetDataFrameFormat(DataFrameFormat format);
 
 private:
     union CR1_register
@@ -60,7 +68,7 @@ private:
             uint8_t SSI : 1;
             uint8_t SSM : 1;
             uint8_t RXONLY : 1;
-            uint8_t DFF : 1;
+            DataFrameFormat DFF : 1;
             uint8_t CRCNEXT : 1;
             uint8_t CRCEN : 1;
             uint8_t BIDIOE : 1;
