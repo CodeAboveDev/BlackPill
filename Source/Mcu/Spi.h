@@ -52,6 +52,12 @@ public:
         MSB,
         LSB,
     };
+    
+    enum class MasterSelection : uint8_t
+    {
+        Slave,
+        Master,
+    };
 
     void SetBaudRate(BaudRate baudrate);
 
@@ -61,6 +67,8 @@ public:
     void SetDataFrameFormat(DataFrameFormat format);
     void SetFrameFormat(FrameFormat format);
 
+    void SetMasterSelection(MasterSelection selection);
+
 private:
     union CR1_register
     {
@@ -68,7 +76,7 @@ private:
         {
             ClockPhase CPHA : 1;
             ClockPolarity CPOL : 1;
-            uint8_t MSTR : 1;
+            MasterSelection MSTR : 1;
             BaudRate BR : 3;
             uint8_t SPE : 1;
             FrameFormat LSBFIRST : 1;

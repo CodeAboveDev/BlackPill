@@ -34,3 +34,8 @@ void Spi::SetFrameFormat(FrameFormat format)
 {
     CR1.bits.LSBFIRST = format;
 }
+
+void Spi::SetMasterSelection(MasterSelection selection)
+{
+    CR1.bits.MSTR = selection;
+}
