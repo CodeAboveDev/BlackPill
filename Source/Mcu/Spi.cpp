@@ -29,3 +29,8 @@ void Spi::SetDataFrameFormat(DataFrameFormat format)
 {
     CR1.bits.DFF = format;
 }
+
+void Spi::SetFrameFormat(FrameFormat format)
+{
+    CR1.bits.LSBFIRST = format;
+}

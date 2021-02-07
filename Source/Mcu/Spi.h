@@ -47,12 +47,19 @@ public:
         Format_16BitData,
     };
 
+    enum class FrameFormat : uint8_t
+    {
+        MSB,
+        LSB,
+    };
+
     void SetBaudRate(BaudRate baudrate);
 
     void SetClockPolarity(ClockPolarity polarity);
     void SetClockPhase(ClockPhase phase);
 
     void SetDataFrameFormat(DataFrameFormat format);
+    void SetFrameFormat(FrameFormat format);
 
 private:
     union CR1_register
@@ -64,7 +71,7 @@ private:
             uint8_t MSTR : 1;
             BaudRate BR : 3;
             uint8_t SPE : 1;
-            uint8_t LSBFIRST : 1;
+            FrameFormat LSBFIRST : 1;
             uint8_t SSI : 1;
             uint8_t SSM : 1;
             uint8_t RXONLY : 1;
