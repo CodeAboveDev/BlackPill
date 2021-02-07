@@ -59,6 +59,9 @@ public:
         Master,
     };
 
+    void Enable(void);
+    void Disable(void);
+
     void SetBaudRate(BaudRate baudrate);
 
     void SetClockPolarity(ClockPolarity polarity);

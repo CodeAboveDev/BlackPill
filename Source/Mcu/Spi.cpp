@@ -10,6 +10,17 @@
  ****************************************************************/
 #include "Spi.h"
 
+void Spi::Enable(void)
+{
+    CR1.bits.SPE = 1;
+}
+
+void Spi::Disable(void)
+{
+    //TODO: Implement disabling procedure
+    CR1.bits.SPE = 0;
+}
+
 void Spi::SetBaudRate(BaudRate baudrate)
 {
     CR1.bits.BR = baudrate;
