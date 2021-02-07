@@ -3,6 +3,7 @@
 #include "Mcu/Gpio.h"
 #include "Mcu/Pwr.h"
 #include "Mcu/Rcc.h"
+#include "Mcu/Spi.h"
 #include "Mcu/Core/Systick.h"
 #include "Led.h"
 #include "Switch.h"
@@ -13,11 +14,17 @@ int main(void)
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
     RCC->APB1ENR |= RCC_APB1ENR_PWREN;
+    RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
 
-    Gpio &gpioC = *reinterpret_cast<Gpio *>(GPIOC_BASE);
     Gpio &gpioA = *reinterpret_cast<Gpio *>(GPIOA_BASE);
-    GpioPin pinC13 {gpioC, Gpio::Pin::Pin_13};
-    GpioPin pinA0 {gpioA, Gpio::Pin::Pin_0};
+    Gpio &gpioB = *reinterpret_cast<Gpio *>(GPIOB_BASE);
+    Gpio &gpioC = *reinterpret_cast<Gpio *>(GPIOC_BASE);
+    GpioPin pinA0 {gpioA, Gpio::Pin::Pin_0}; // User KEY switch
+    GpioPin pinA5 {gpioA, Gpio::Pin::Pin_5}; // Display: SCL SPI1
+    GpioPin pinA6 {gpioA, Gpio::Pin::Pin_6}; // Display: DC
+    GpioPin pinA7 {gpioA, Gpio::Pin::Pin_7}; // Display: SDA SPI1
+    GpioPin pinB0 {gpioB, Gpio::Pin::Pin_0}; // Display: RES
+    GpioPin pinC13 {gpioC, Gpio::Pin::Pin_13}; // User LED
 
     Flash &flash = *reinterpret_cast<Flash *>(FLASH_R_BASE);
     flash.SetLatency(Flash::WaitStates::WS_3);
@@ -39,6 +46,15 @@ int main(void)
     systick.SetClockSource(Systick::ClockSource::AHB);
     systick.EnableInterrupt();
     systick.Enable();
+
+    Spi &spi1 = *reinterpret_cast<Spi *>(SPI1_BASE);
+    spi1.SetBaudRate(Spi::BaudRate::PCLK_div8);
+    spi1.SetClockPolarity(Spi::ClockPolarity::CPOL_0);
+    spi1.SetClockPhase(Spi::ClockPhase::CPHA_0);
+    spi1.SetDataFrameFormat(Spi::DataFrameFormat::Format_8BitData);
+    spi1.SetFrameFormat(Spi::FrameFormat::MSB);
+    spi1.SetMasterSelection(Spi::MasterSelection::Master);
+    spi1.Enable();
 
     Led blueLed(pinC13);
     Switch userSwitch(pinA0);
