@@ -3,30 +3,40 @@
 
 int main(void)
 {
-    // Enable GPIOC
-    // *(uint32_t *)(0x40023800+0x30) |= (1 << 2);
+    // Enable GPIOA and GPIOC
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
 
-    // Output mode
-    // *(uint32_t *)(0x40020800) &= ~(0b11 << (2*13));
-    // *(uint32_t *)(0x40020800) |= (0b01 << (2*13));
+    // PC13 - Output mode
     GPIOC->MODER &= ~(GPIO_MODER_MODER13_Msk);
     GPIOC->MODER |= GPIO_MODER_MODE13_0;
 
-    // Output type push-pull
-    // *(uint32_t *)(0x40020800+0x4) &= ~(0b01 << 13);
+    // PC13 - Output type push-pull
     GPIOC->OTYPER &= ~(GPIO_OTYPER_OT13_Msk);
 
-    // Output speed low
+    // PC13 - Output speed low
     // Reset value for GPIOC OSPEEDR is low
-    // *(uint32_t *)(0x40020800+0x8) &= ~(0b11 << (2*13));
     GPIOC->OSPEEDR &= ~(GPIO_OSPEEDR_OSPEED13_Msk);
 
-    // Reset PC13 - LED ON
-    // *(uint32_t *)(0x40020800+0x10) &= ~(1 << 13);
-    GPIOC->ODR &= ~(GPIO_ODR_OD13_Msk);
+    // PA0 - Input mode
+    GPIOA->MODER &= ~(GPIO_MODER_MODER0_Msk);
+
+    // PA0 - Enable pull-up register
+    GPIOA->PUPDR &= ~(GPIO_PUPDR_PUPD0_Msk);
+    GPIOA->PUPDR |= GPIO_PUPDR_PUPD0_0;
 
     while(1)
     {
+        // Switch pressed -> input is low
+        if((GPIOA->IDR & GPIO_IDR_ID0_Msk) == 0)
+        {
+            // Output low -> LED On
+            GPIOC->ODR &= ~(GPIO_ODR_OD13);
+        }
+        else
+        {
+            // Output high -> LED Off
+            GPIOC->ODR |= GPIO_ODR_OD13;
+        }   
     }
 }
