@@ -50,3 +50,12 @@ void Spi::SetMasterSelection(MasterSelection selection)
 {
     CR1.bits.MSTR = selection;
 }
+
+void Spi::Write(uint8_t byte)
+{
+    DR = byte;
+    while(SR.bits.TXE != 1)
+    {
+        // Wait for it!
+    }
+}

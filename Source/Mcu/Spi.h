@@ -72,6 +72,8 @@ public:
 
     void SetMasterSelection(MasterSelection selection);
 
+    void Write(uint8_t byte);
+
 private:
     union CR1_register
     {
