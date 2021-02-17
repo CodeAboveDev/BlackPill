@@ -36,6 +36,17 @@ void Gpio::ResetPin(const Pin pin)
 {
     BSRR |= ((1 << etoi(pin)) << 16);
 }
+
+void Gpio::SetAlternateFunction(const Pin pin, const AlternateFunction function)
+{
+    if(pin < Pin::Pin_8)
+    {
+        AFRL = ((AFRL & ~(0x0000000F << (etoi(pin) * 4))) | (etoi(function) << (etoi(pin) * 4)));
+    }
+    else
+    {
+        AFRH = ((AFRH & ~(0x0000000F << ((etoi(pin)-etoi(Pin::Pin_8)) * 4))) | (etoi(function) << ((etoi(pin)-etoi(Pin::Pin_8)) * 4)));
+    }
 }
 
 bool Gpio::ReadPin(const Pin pin)
@@ -72,4 +83,9 @@ void GpioPin::SetMode(const Gpio::Mode mode) const
 void GpioPin::SetPull(const Gpio::Pull pull) const
 {
     gpio.SetPinPull(pin, pull);
+}
+
+void GpioPin::SetAlternateFunction(const Gpio::AlternateFunction function) const
+{
+    gpio.SetAlternateFunction(pin, function);
 }

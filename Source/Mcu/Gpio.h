@@ -40,11 +40,33 @@ public:
         Down
     };
 
+    enum class AlternateFunction : uint8_t
+    {
+        AF00_SYS_AF, 
+        AF01_TIM1_TIM2,
+        AF02_TIM3_TIM4_TIM5,
+        AF03_TIM9_TIM10_TIM11,
+        AF04_I2C1_I2C2_I2C3,
+        AF05_SPI1_I2S1SPI2_I2S2_SPI3_I2S3,
+        AF06_SPI2_I2S2_SPI3_I2S3_SPI4_I2S4_SPI5_I2S5,
+        AF07_SPI3_I2S3_USART1_USART2,
+        AF08_USART6,
+        AF09_I2C2_I2C3,
+        AF10_OTG1_FS,
+        AF11_,
+        AF12_SDIO,
+        AF13_,
+        AF14_,
+        AF15_,
+    };
+
     void SetPinMode(const Pin pin, const Mode mode);
     void SetPinPull(const Pin pin, const Pull pull);
     void SetPin(const Pin pin);
     bool ReadPin(const Pin pin);
     void ResetPin(const Pin pin);
+
+    void SetAlternateFunction(const Pin pin, const AlternateFunction function);
 
 private:
     volatile uint32_t MODER;
@@ -71,6 +93,7 @@ public:
 
     void SetMode(const Gpio::Mode mode) const;
     void SetPull(const Gpio::Pull pull) const;
+    void SetAlternateFunction(const Gpio::AlternateFunction function) const;
 
 private:
     Gpio& gpio;
