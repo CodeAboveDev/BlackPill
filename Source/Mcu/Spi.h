@@ -97,8 +97,28 @@ private:
         struct CR1_bits bits;
     };
 
+    union SR_register
+    {
+        struct SR_bits
+        {
+            const uint8_t RXNE : 1;
+            const uint8_t TXE : 1;
+            const uint8_t CHSIDE : 1;
+            const uint8_t UDR : 1;
+            uint8_t CRCERR : 1;
+            const uint8_t MODF : 1;
+            const uint8_t OVR : 1;
+            const uint8_t BSY : 1;
+            const uint8_t FRE : 1;
+            const uint8_t Reserved : 7;
+        };
+
+        uint16_t value;
+        struct SR_bits bits;
+    };
+
     volatile union CR1_register CR1;
-    volatile uint32_t SR;
+    volatile union SR_register SR;
     volatile uint32_t DR;
     volatile uint32_t CRCPR;
     volatile uint32_t RXCRCR;
