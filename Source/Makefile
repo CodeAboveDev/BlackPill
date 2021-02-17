@@ -47,6 +47,7 @@ Mcu/Gpio.cpp \
 Mcu/Flash.cpp \
 Mcu/Pwr.cpp \
 Mcu/Rcc.cpp \
+Mcu/Spi.cpp \
 Mcu/Core/Systick.cpp \
 
 # ASM sources
