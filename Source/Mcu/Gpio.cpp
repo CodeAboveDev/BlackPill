@@ -11,29 +11,36 @@
 #include "stm32f4xx.h"
 #include "Gpio.h"
 
+template <typename Enumeration>
+typename std::underlying_type<Enumeration>::type etoi(Enumeration const value)
+{
+    return static_cast<typename std::underlying_type<Enumeration>::type>(value);
+}
+
 void Gpio::SetPinMode(const Pin pin, const Mode mode)
 {
-    MODER = ((MODER & ~(0x00000003 << (pin * 2))) | (mode << (pin * 2)));
+    MODER = ((MODER & ~(0x00000003 << (etoi(pin) * 2))) | (etoi(mode) << (etoi(pin) * 2)));
 }
 
 void Gpio::SetPinPull(const Pin pin, const Pull pull)
 {
-    PUPDR = ((PUPDR & ~(0x00000003 << (pin * 2))) | (pull << (pin * 2)));
+    PUPDR = ((PUPDR & ~(0x00000003 << (etoi(pin) * 2))) | (etoi(pull) << (etoi(pin) * 2)));
 }
 
 void Gpio::SetPin(const Pin pin)
 {
-    BSRR |= (1 << pin);
+    BSRR |= (1 << etoi(pin));
 }
 
 void Gpio::ResetPin(const Pin pin)
 {
-    BSRR |= ((1 << pin) << 16);
+    BSRR |= ((1 << etoi(pin)) << 16);
+}
 }
 
 bool Gpio::ReadPin(const Pin pin)
 {
-    return (IDR & (1 << pin)) == 0 ? false : true;
+    return (IDR & (1 << etoi(pin))) == 0 ? false : true;
 }
 
 GpioPin::GpioPin(Gpio& gpio, const Gpio::Pin pin)
