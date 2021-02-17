@@ -17,7 +17,7 @@
 class Gpio
 {
 public:
-    enum Pin
+    enum class Pin : uint8_t
     {
         Pin_0,  Pin_1,  Pin_2,  Pin_3,
         Pin_4,  Pin_5,  Pin_6,  Pin_7,
@@ -25,7 +25,7 @@ public:
         Pin_12, Pin_13, Pin_14, Pin_15
     };
 
-    enum Mode
+    enum class Mode : uint8_t
     {
         Input,
         Output,
@@ -33,7 +33,7 @@ public:
         Analog
     };
 
-    enum Pull
+    enum class Pull : uint8_t
     {
         No,
         Up,
