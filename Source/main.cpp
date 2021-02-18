@@ -47,6 +47,7 @@ int main(void)
     systick.EnableInterrupt();
     systick.Enable();
 
+    pinA6.SetMode(Gpio::Mode::Output);
     pinA5.SetMode(Gpio::Mode::AlternateFunction);
     pinA5.SetAlternateFunction(Gpio::AlternateFunction::AF05_SPI1_I2S1SPI2_I2S2_SPI3_I2S3);
     pinA7.SetMode(Gpio::Mode::AlternateFunction);
