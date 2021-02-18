@@ -53,15 +53,16 @@ int main(void)
     pinA7.SetAlternateFunction(Gpio::AlternateFunction::AF05_SPI1_I2S1SPI2_I2S2_SPI3_I2S3);
 
     Spi &spi1 = *reinterpret_cast<Spi *>(SPI1_BASE);
-    spi1.SetBaudRate(Spi::BaudRate::PCLK_div8);
-    spi1.SetClockPolarity(Spi::ClockPolarity::CPOL_0);
-    spi1.SetClockPhase(Spi::ClockPhase::CPHA_0);
-    spi1.SetDataFrameFormat(Spi::DataFrameFormat::Format_8BitData);
-    spi1.SetFrameFormat(Spi::FrameFormat::MSB);
-    spi1.SetSoftwareNSS();
-    spi1.SetTransferMode(Spi::TransferMode::FullDuplex);
-    spi1.SetMasterSelection(Spi::MasterSelection::Master);
-    spi1.Enable();
+    // spi1.SetBaudRate(Spi::BaudRate::PCLK_div8);
+    // spi1.SetClockPolarity(Spi::ClockPolarity::CPOL_0);
+    // spi1.SetClockPhase(Spi::ClockPhase::CPHA_0);
+    // spi1.SetDataFrameFormat(Spi::DataFrameFormat::Format_8BitData);
+    // spi1.SetFrameFormat(Spi::FrameFormat::MSB);
+    // spi1.SetSoftwareNSS();
+    // spi1.SetTransferMode(Spi::TransferMode::FullDuplex);
+    // spi1.SetMasterSelection(Spi::MasterSelection::Master);
+    // spi1.Enable();
+    spi1.Enable_Hardcoded();
 
     Led blueLed(pinC13);
     Switch userSwitch(pinA0);

@@ -15,6 +15,11 @@ void Spi::Enable(void)
     CR1.bits.SPE = 1;
 }
 
+void Spi::Enable_Hardcoded(void)
+{
+    CR1.value = 0x00000354u;
+}
+
 void Spi::Disable(void)
 {
     //TODO: Implement disabling procedure

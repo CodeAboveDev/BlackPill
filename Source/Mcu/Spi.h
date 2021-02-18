@@ -68,6 +68,7 @@ public:
     };
 
     void Enable(void);
+    void Enable_Hardcoded(void);
     void Disable(void);
 
     void SetBaudRate(BaudRate baudrate);
