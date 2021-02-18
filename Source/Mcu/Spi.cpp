@@ -58,4 +58,8 @@ void Spi::Write(uint8_t byte)
     {
         // Wait for it!
     }
+    while(SR.bits.BSY != 0)
+    {
+        // Wait for it!
+    }
 }
