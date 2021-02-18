@@ -11,10 +11,10 @@
 #include "stm32f4xx.h"
 #include "Gpio.h"
 
-template <typename Enumeration>
-typename std::underlying_type<Enumeration>::type etoi(Enumeration const value)
+template <typename E>
+constexpr auto etoi(E const value)
 {
-    return static_cast<typename std::underlying_type<Enumeration>::type>(value);
+    return static_cast<std::underlying_type_t<E>>(value);
 }
 
 void Gpio::SetPinMode(const Pin pin, const Mode mode)
