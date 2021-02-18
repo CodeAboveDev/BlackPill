@@ -93,6 +93,7 @@ private:
             uint8_t CRCEN : 1;
             uint8_t BIDIOE : 1;
             uint8_t BIDIMODE : 1;
+            uint16_t Reserved : 16;
         };
 
         uint32_t value;
@@ -112,10 +113,10 @@ private:
             const uint8_t OVR : 1;
             const uint8_t BSY : 1;
             const uint8_t FRE : 1;
-            const uint8_t Reserved : 7;
+            const uint32_t Reserved : 23;
         };
 
-        uint16_t value;
+        uint32_t value;
         struct SR_bits bits;
     };
 
