@@ -81,6 +81,7 @@ public:
     void SetMasterSelection(MasterSelection selection);
     void SetTransferMode(TransferMode mode);
 
+    void SetSoftwareNSS(void);
 
     void Write(uint8_t byte);
 

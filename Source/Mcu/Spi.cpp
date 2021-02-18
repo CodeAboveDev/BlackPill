@@ -84,6 +84,12 @@ void Spi::SetTransferMode(TransferMode mode)
     CR1.value = ((CR1.value & ~((1 << 15) | (1 << 14) | (1 << 10))) | ((bidimode << 15) | (bidioe << 14) | (rxonly << 10)));
 }
 
+void Spi::SetSoftwareNSS(void)
+{
+    CR1.bits.SSM = 1;
+    CR1.bits.SSI = 1;
+}
+
 void Spi::Write(uint8_t byte)
 {
     DR = byte;
