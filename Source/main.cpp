@@ -53,6 +53,8 @@ int main(void)
     spi1.SetClockPhase(Spi::ClockPhase::CPHA_0);
     spi1.SetDataFrameFormat(Spi::DataFrameFormat::Format_8BitData);
     spi1.SetFrameFormat(Spi::FrameFormat::MSB);
+    spi1.SetSoftwareNSS();
+    spi1.SetTransferMode(Spi::TransferMode::FullDuplex);
     spi1.SetMasterSelection(Spi::MasterSelection::Master);
     spi1.Enable();
 
