@@ -59,6 +59,14 @@ public:
         Master,
     };
 
+    enum class TransferMode : uint8_t
+    {
+        FullDuplex,
+        SimplexRx,
+        HalfDuplexRx,
+        HalfDuplexTx,
+    };
+
     void Enable(void);
     void Disable(void);
 
@@ -71,6 +79,8 @@ public:
     void SetFrameFormat(FrameFormat format);
 
     void SetMasterSelection(MasterSelection selection);
+    void SetTransferMode(TransferMode mode);
+
 
     void Write(uint8_t byte);
 

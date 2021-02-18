@@ -51,6 +51,39 @@ void Spi::SetMasterSelection(MasterSelection selection)
     CR1.bits.MSTR = selection;
 }
 
+void Spi::SetTransferMode(TransferMode mode)
+{
+    uint32_t bidimode = 0;
+    uint32_t bidioe = 0;
+    uint32_t rxonly = 0;
+
+    switch(mode)
+    {
+    case TransferMode::FullDuplex:
+        bidimode = 0;
+        bidioe = 0;
+        rxonly = 0;
+        break;
+    case TransferMode::SimplexRx:
+        bidimode = 0;
+        bidioe = 0;
+        rxonly = 1;
+        break;
+    case TransferMode::HalfDuplexRx:
+        bidimode = 1;
+        bidioe = 0;
+        rxonly = 0;
+        break;
+    case TransferMode::HalfDuplexTx:
+        bidimode = 1;
+        bidioe = 1;
+        rxonly = 0;
+        break;
+    }
+
+    CR1.value = ((CR1.value & ~((1 << 15) | (1 << 14) | (1 << 10))) | ((bidimode << 15) | (bidioe << 14) | (rxonly << 10)));
+}
+
 void Spi::Write(uint8_t byte)
 {
     DR = byte;
