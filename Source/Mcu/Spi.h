@@ -120,6 +120,7 @@ private:
     };
 
     volatile union CR1_register CR1;
+    volatile uint32_t CR2;
     volatile union SR_register SR;
     volatile uint32_t DR;
     volatile uint32_t CRCPR;
