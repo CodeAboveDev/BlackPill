@@ -47,6 +47,11 @@ int main(void)
     systick.EnableInterrupt();
     systick.Enable();
 
+    pinA5.SetMode(Gpio::Mode::AlternateFunction);
+    pinA5.SetAlternateFunction(Gpio::AlternateFunction::AF05_SPI1_I2S1SPI2_I2S2_SPI3_I2S3);
+    pinA7.SetMode(Gpio::Mode::AlternateFunction);
+    pinA7.SetAlternateFunction(Gpio::AlternateFunction::AF05_SPI1_I2S1SPI2_I2S2_SPI3_I2S3);
+
     Spi &spi1 = *reinterpret_cast<Spi *>(SPI1_BASE);
     spi1.SetBaudRate(Spi::BaudRate::PCLK_div8);
     spi1.SetClockPolarity(Spi::ClockPolarity::CPOL_0);
