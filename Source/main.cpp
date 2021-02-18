@@ -68,9 +68,13 @@ int main(void)
     Led blueLed(pinC13);
     Switch userSwitch(pinA0);
 
+    uint8_t i = 0u;
     while(1)
     {
-        
+        // TODO: Why RXONLY=1?
+        pinA6.Reset();
+        spi1.Write(i++);
+        pinA6.Set();
     }
 }
 
