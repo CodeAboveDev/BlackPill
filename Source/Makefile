@@ -43,6 +43,7 @@ CXX_SOURCES =  \
 main.cpp \
 Led.cpp \
 Switch.cpp \
+TimeBase.cpp \
 Mcu/Gpio.cpp \
 Mcu/Flash.cpp \
 Mcu/Pwr.cpp \
