@@ -9,3 +9,21 @@
  *                  opensource.org/licenses/BSD-3-Clause
  ****************************************************************/
 #include "TimeBase.h"
+
+uint32_t TimeBase::Time_ms { 0u };
+
+void TimeBase::Tick(void)
+{
+    Time_ms++;
+}
+
+bool TimeBase::IsIntervalPassed(void)
+{
+    if((Time_ms - LastIntervalPassedTime) >= IntervalTime)
+    {
+        LastIntervalPassedTime = Time_ms;
+        return true;
+    }
+
+    return false;
+}

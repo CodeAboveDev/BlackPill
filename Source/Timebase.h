@@ -11,11 +11,20 @@
 #ifndef TimeBase_H
 #define TimeBase_H
 
+#include <stdint.h>
+
 class TimeBase
 {
 public:
+    static void Tick(void);
+    bool IsIntervalPassed(void);
 
 private:
+    static constexpr uint8_t IntervalTime { 1u };
+
+    static uint32_t Time_ms;
+
+    uint32_t LastIntervalPassedTime { 0u };
 
 };
 
