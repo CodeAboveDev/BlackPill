@@ -17,7 +17,7 @@ void Spi::Enable(void)
 
 void Spi::Enable_Hardcoded(void)
 {
-    CR1.value = 0x00000354u;
+    CR1.value = 0x0000034Eu;
 }
 
 void Spi::Disable(void)
