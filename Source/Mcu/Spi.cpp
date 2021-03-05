@@ -107,3 +107,19 @@ void Spi::Write(uint8_t byte)
         // Wait for it!
     }
 }
+
+void Spi::Write(const uint8_t* buffer, size_t size)
+{
+    for(uint32_t i = 0u; i < size; i++)
+    {
+        DR = buffer[i];
+        while(SR.bits.TXE != 1)
+        {
+            // Wait for it!
+        }
+    }
+    while(SR.bits.BSY != 0)
+    {
+        // Wait for it!
+    }
+}

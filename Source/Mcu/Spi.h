@@ -12,6 +12,7 @@
 #define Spi_H
 
 #include <stdint.h>
+#include <stdlib.h>
 #include <type_traits>
 
 class Spi
@@ -85,6 +86,7 @@ public:
     void SetSoftwareNSS(void);
 
     void Write(uint8_t byte);
+    void Write(const uint8_t* buffer, size_t size);
 
 private:
     union CR1_register
