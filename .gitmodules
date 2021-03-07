@@ -1,3 +1,6 @@
 [submodule "Source/Drivers/ST7789"]
 	path = Source/Drivers/ST7789
 	url = https://github.com/CodeAboveOrg/ST7789.git
+[submodule "Source/Libraries/UGUI"]
+	path = Source/Libraries/UGUI
+	url = https://github.com/CodeAboveOrg/UGUI.git
