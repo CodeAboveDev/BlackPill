@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include "Drivers/ST7789/ST7789.h"
 #include "Mcu/Flash.h"
 #include "Mcu/Gpio.h"
 #include "Mcu/Pwr.h"
@@ -9,6 +10,43 @@
 #include "Switch.h"
 #include "stm32f4xx.h"
 
+class ST7789Pin : public IST7789Pin
+{
+public:
+    ST7789Pin(GpioPin& pin) : pin(pin) {};
+
+    void Set(void) override
+    {
+        pin.Set();
+    };
+    
+    void Reset(void) override
+    {
+        pin.Reset();
+    };
+
+private:
+    GpioPin& pin;
+};
+
+class ST7789Spi : public IST7789Spi
+{
+public:
+    ST7789Spi(Spi& spi) : spi(spi) {};
+
+    void Write(uint8_t byte) override
+    {
+        spi.Write(byte);
+    };
+
+    void Write(const uint8_t* buffer, size_t size) override
+    {
+        spi.Write(buffer, size);
+    };
+
+private:
+    Spi& spi;
+};
 int main(void)
 {
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
