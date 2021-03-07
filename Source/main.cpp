@@ -50,6 +50,7 @@ private:
 int main(void)
 {
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
+    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
     RCC->APB1ENR |= RCC_APB1ENR_PWREN;
     RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
@@ -85,6 +86,7 @@ int main(void)
     systick.EnableInterrupt();
     systick.Enable();
 
+    pinB0.SetMode(Gpio::Mode::Output);
     pinA6.SetMode(Gpio::Mode::Output);
     pinA5.SetMode(Gpio::Mode::AlternateFunction);
     pinA5.SetAlternateFunction(Gpio::AlternateFunction::AF05_SPI1_I2S1SPI2_I2S2_SPI3_I2S3);
@@ -106,12 +108,14 @@ int main(void)
     Led blueLed(pinC13);
     Switch userSwitch(pinA0);
 
-    uint8_t i = 0u;
+    ST7789Spi st7789Spi { spi1 };
+    ST7789Pin rstPin { pinB0 };
+    ST7789Pin dcPin { pinA6 };
+    ST7789 st7789 { st7789Spi, rstPin, dcPin };
+    st7789.Init();
     while(1)
     {
-        pinA6.Reset();
-        spi1.Write(i++);
-        pinA6.Set();
+
     }
 }
 
@@ -132,4 +136,5 @@ extern "C" void SysTick_Handler(void)
         blueLed.Off();
         cnt = 0;
     }
+    ST7789::Task1ms();
 }
