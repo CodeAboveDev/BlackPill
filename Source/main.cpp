@@ -1,5 +1,7 @@
 #include <stdint.h>
+#include <stdlib.h>
 #include "Drivers/ST7789/ST7789.h"
+#include "Libraries/UGUI/ugui.h"
 #include "Mcu/Flash.h"
 #include "Mcu/Gpio.h"
 #include "Mcu/Pwr.h"
@@ -48,6 +50,20 @@ public:
 private:
     Spi& spi;
 };
+
+class SetPixelAdapter
+{
+public:
+    static void Set(int16_t x, int16_t y, uint16_t color)
+    {
+        pST7789->SetPixel(x, y, color);
+    };
+
+    static ST7789* pST7789;
+private:
+};
+ST7789* SetPixelAdapter::pST7789 = nullptr;
+
 int main(void)
 {
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
@@ -114,6 +130,26 @@ int main(void)
     ST7789Pin dcPin { pinA6 };
     ST7789 st7789 { st7789Spi, rstPin, dcPin };
     st7789.Init();
+    SetPixelAdapter::pST7789 = &st7789;
+    
+    UG_GUI gui;
+    UG_Init(&gui, SetPixelAdapter::Set, 240, 240);
+    UG_FontSelect( &FONT_8X14 );
+    UG_ConsoleSetBackcolor(C_BLACK);
+    UG_ConsoleSetForecolor(C_WHITE);
+    char *str1 = "CodeAbove initialized!\n";
+    UG_ConsolePutString(str1);
+    UG_ConsolePutString(str1);
+    UG_ConsolePutString(str1);
+    UG_ConsolePutString(str1);
+    UG_ConsolePutString(str1);
+    UG_ConsoleSetForecolor( 0xEBC6 ) ;
+    UG_ConsolePutString(str1);
+    UG_ConsolePutString(str1);
+    UG_ConsoleSetForecolor( C_RED ) ;
+    UG_ConsolePutString(str1);
+    UG_ConsolePutString(str1);
+
     while(1)
     {
 

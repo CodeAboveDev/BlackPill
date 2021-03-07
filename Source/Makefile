@@ -36,7 +36,8 @@ BUILD_DIR = build
 ######################################
 # C sources
 C_SOURCES =  \
-system_stm32f4xx.c  
+system_stm32f4xx.c \
+Libraries/UGUI/ugui.c \
 
 # C++ sources
 CXX_SOURCES =  \
