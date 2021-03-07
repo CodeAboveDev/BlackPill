@@ -8,6 +8,7 @@
 #include "Mcu/Core/Systick.h"
 #include "Led.h"
 #include "Switch.h"
+#include "TimeBase.h"
 #include "stm32f4xx.h"
 
 class ST7789Pin : public IST7789Pin
@@ -136,5 +137,7 @@ extern "C" void SysTick_Handler(void)
         blueLed.Off();
         cnt = 0;
     }
+
+    TimeBase::Tick();
     ST7789::Task1ms();
 }
