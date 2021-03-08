@@ -134,21 +134,9 @@ int main(void)
     
     UG_GUI gui;
     UG_Init(&gui, SetPixelAdapter::Set, 240, 240);
-    UG_FontSelect( &FONT_8X14 );
+    UG_FontSelect(&FONT_8X14);
     UG_ConsoleSetBackcolor(C_BLACK);
     UG_ConsoleSetForecolor(C_WHITE);
-    char *str1 = "CodeAbove initialized!\n";
-    UG_ConsolePutString(str1);
-    UG_ConsolePutString(str1);
-    UG_ConsolePutString(str1);
-    UG_ConsolePutString(str1);
-    UG_ConsolePutString(str1);
-    UG_ConsoleSetForecolor( 0xEBC6 ) ;
-    UG_ConsolePutString(str1);
-    UG_ConsolePutString(str1);
-    UG_ConsoleSetForecolor( C_RED ) ;
-    UG_ConsolePutString(str1);
-    UG_ConsolePutString(str1);
 
     while(1)
     {
@@ -174,6 +162,5 @@ extern "C" void SysTick_Handler(void)
         cnt = 0;
     }
 
-    TimeBase::Tick();
     ST7789::Task1ms();
 }
