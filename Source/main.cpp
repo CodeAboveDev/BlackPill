@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include "Drivers/ST7789/ST7789.h"
 #include "Libraries/UGUI/ugui.h"
@@ -147,9 +148,13 @@ int main(void)
     UG_ConsoleSetBackcolor(C_BLACK);
     UG_ConsoleSetForecolor(C_WHITE);
 
+    char number[11];
+    uint32_t i = 0u;
     while(1)
     {
-
+        sprintf(number, "%lu\n", i++);
+        UG_PutString(0,0,number);
+        st7789.RefreshDisplay();
     }
 }
 
