@@ -54,15 +54,24 @@ private:
 class SetPixelAdapter
 {
 public:
-    static void Set(int16_t x, int16_t y, uint16_t color)
+    union buffer
     {
-        pST7789->SetPixel(x, y, color);
+        uint16_t u16[240*240];
+        uint8_t u8[240*240*2];
     };
 
+    static void Set(int16_t x, int16_t y, uint16_t color)
+    {
+        displayBuffer.u8[(y*240+x)*2] = (color>>8);
+        displayBuffer.u8[(y*240+x)*2+1] = (color&0xFF);
+    };
+
+    static union buffer displayBuffer;
     static ST7789* pST7789;
 private:
 };
 ST7789* SetPixelAdapter::pST7789 = nullptr;
+SetPixelAdapter::buffer SetPixelAdapter::displayBuffer;
 
 int main(void)
 {
@@ -128,7 +137,7 @@ int main(void)
     ST7789Spi st7789Spi { spi1 };
     ST7789Pin rstPin { pinB0 };
     ST7789Pin dcPin { pinA6 };
-    ST7789 st7789 { st7789Spi, rstPin, dcPin };
+    ST7789 st7789 { st7789Spi, rstPin, dcPin, SetPixelAdapter::displayBuffer.u8 };
     st7789.Init();
     SetPixelAdapter::pST7789 = &st7789;
     
