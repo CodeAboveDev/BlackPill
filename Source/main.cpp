@@ -160,21 +160,5 @@ int main(void)
 
 extern "C" void SysTick_Handler(void)
 {
-    static uint16_t cnt = 0u;
-    Gpio &gpioC = *reinterpret_cast<Gpio *>(GPIOC_BASE);
-    GpioPin pinC13 {gpioC, Gpio::Pin::Pin_13};
-    Led blueLed(pinC13);
-
-    cnt += 1;
-    if(cnt == 500)
-    {
-        blueLed.On();
-    }
-    else if(cnt == 1000)
-    {
-        blueLed.Off();
-        cnt = 0;
-    }
-
-    ST7789::Task1ms();
+    SystickInterruptHandler::ISR();
 }
