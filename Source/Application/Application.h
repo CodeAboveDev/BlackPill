@@ -11,14 +11,16 @@
 #ifndef Application_H
 #define Application_H
 
+#include "TimeBase.h"
+
 class Application
 {
 public:
     Application();
     
-
+    void Perform(void);
 private:
-
+    TimeBase timebase;
 
 };
 
