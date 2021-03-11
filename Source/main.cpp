@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "Application/Application.h"
 #include "Drivers/ST7789/ST7789.h"
 #include "Libraries/UGUI/ugui.h"
 #include "Mcu/Flash.h"
@@ -11,7 +12,6 @@
 #include "Mcu/Core/Systick.h"
 #include "Led.h"
 #include "Switch.h"
-#include "TimeBase.h"
 #include "stm32f4xx.h"
 
 class ST7789Pin : public IST7789Pin
@@ -147,11 +147,11 @@ int main(void)
     // UG_FontSelect(&FONT_8X14);
     // UG_ConsoleSetBackcolor(C_BLACK);
     // UG_ConsoleSetForecolor(C_WHITE);
+
+    Application app;
     while(1)
     {
-        sprintf(number, "%lu\n", i++);
-        UG_PutString(0,0,number);
-        st7789.RefreshDisplay();
+        app.Perform();
     }
 }
 
