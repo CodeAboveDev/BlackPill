@@ -10,6 +10,8 @@
  ****************************************************************/
 #include "Systick.h"
 
+volatile uint32_t SystickInterruptHandler::SystemTime { 0u };
+
 void Systick::Enable(void)
 {
     CTRL.bits.ENABLE = 1;
@@ -34,4 +36,14 @@ void Systick::SetReload(const uint32_t reload)
 void Systick::SetReload1msTick(const uint32_t clockFrequency)
 {
     SetReload((clockFrequency / 1000) - 1);
+}
+
+void SystickInterruptHandler::ISR(void)
+{
+    SystemTime++;
+}
+
+uint32_t SystickInterruptHandler::GetSystemTime(void)
+{
+    return SystemTime;
 }

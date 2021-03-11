@@ -64,6 +64,19 @@ private:
     volatile uint32_t CALIB;
 };
 
+class SystickInterruptHandler
+{
+public:
+    SystickInterruptHandler() = delete;
+    ~SystickInterruptHandler() = delete;
+
+    static void ISR(void);
+    static uint32_t GetSystemTime(void);
+
+private:
+    volatile static uint32_t SystemTime;
+};
+
 static_assert(std::is_standard_layout<Systick>::value, "Systick class is NOT standard layout");
 
 #endif // Systick_H
