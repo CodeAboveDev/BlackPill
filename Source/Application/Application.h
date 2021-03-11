@@ -11,8 +11,8 @@
 #ifndef Application_H
 #define Application_H
 
-#include "IDisplay.h"
 #include "TimeBase.h"
+#include "Display/IDisplay.h"
 
 class Application
 {
