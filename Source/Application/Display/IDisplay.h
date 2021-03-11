@@ -14,10 +14,9 @@
 class IDisplay
 {
 public:
-    
+    virtual void Refresh(void) = 0;
 
 private:
-
 
 };
 
