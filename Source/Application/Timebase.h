@@ -16,16 +16,25 @@
 class TimeBase
 {
 public:
-    static void Tick(void);
-    bool IsIntervalPassed(void);
+    void Refresh(void);
+
+    bool Is1msPassed(void);
+    bool Is10msPassed(void);
+    bool Is100msPassed(void);
 
 private:
     static constexpr uint8_t IntervalTime { 1u };
 
-    static uint32_t Time_ms;
-
     uint32_t LastIntervalPassedTime { 0u };
+    uint32_t IntervalsCounter { 0u };
 
+    bool TimePassed_1ms { false };
+    bool TimePassed_10ms { false };
+    bool TimePassed_100ms { false };
+
+    bool IsIntervalPassed(void);
+    void ClearTimeFlags(void);
+    void UpdateTimeFlags(void);
 };
 
 #endif // TimeBase_H
