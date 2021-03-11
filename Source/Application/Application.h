@@ -11,16 +11,20 @@
 #ifndef Application_H
 #define Application_H
 
+#include "IDisplay.h"
 #include "TimeBase.h"
 
 class Application
 {
 public:
-    Application();
+    Application(IDisplay& disp);
     
     void Perform(void);
 private:
+    IDisplay& display;
+
     TimeBase timebase;
+
 
 };
 

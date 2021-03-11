@@ -12,7 +12,8 @@
 #include "../Led.h"
 #include "../Mcu/Gpio.h"
 
-Application::Application()
+Application::Application(IDisplay& disp)
+: display(disp)
 {
 
 }
@@ -53,5 +54,7 @@ void Application::Perform(void)
             blueLed.Off();
             cnt = 0;
         }
+
+        display.Refresh();
     }
 }
