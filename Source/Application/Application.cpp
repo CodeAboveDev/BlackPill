@@ -54,7 +54,11 @@ void Application::Perform(void)
             blueLed.Off();
             cnt = 0;
         }
+    }
 
+    // 1000ms tasks
+    if(timebase.Is1000msPassed())
+    {
         display.Refresh(); //TODO: Takes too much times, slows down system
     }
 }
