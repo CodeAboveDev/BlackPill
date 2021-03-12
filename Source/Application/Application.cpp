@@ -45,16 +45,16 @@ void Application::Perform(void)
         Led blueLed(pinC13);
 
         cnt += 1;
-        if(cnt == 10)
+        if(cnt == 5)
         {
             blueLed.On();
         }
-        else if(cnt == 20)
+        else if(cnt == 10)
         {
             blueLed.Off();
             cnt = 0;
         }
 
-        display.Refresh();
+        display.Refresh(); //TODO: Takes too much times, slows down system
     }
 }

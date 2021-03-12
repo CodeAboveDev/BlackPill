@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Application/Application.h"
+#include "Application/Display/IPS_240x240.h"
 #include "Drivers/ST7789/ST7789.h"
 #include "Libraries/UGUI/ugui.h"
 #include "Mcu/Flash.h"
@@ -135,22 +136,28 @@ int main(void)
     Led blueLed(pinC13);
     Switch userSwitch(pinA0);
 
-    // ST7789Spi st7789Spi { spi1 };
-    // ST7789Pin rstPin { pinB0 };
-    // ST7789Pin dcPin { pinA6 };
+    ST7789Spi st7789Spi { spi1 };
+    ST7789Pin rstPin { pinB0 };
+    ST7789Pin dcPin { pinA6 };
     // ST7789 st7789 { st7789Spi, rstPin, dcPin, SetPixelAdapter::displayBuffer.u8 };
     // st7789.Init();
     // SetPixelAdapter::pST7789 = &st7789;
     
-    // UG_GUI gui;
-    // UG_Init(&gui, SetPixelAdapter::Set, 240, 240);
-    // UG_FontSelect(&FONT_8X14);
-    // UG_ConsoleSetBackcolor(C_BLACK);
-    // UG_ConsoleSetForecolor(C_WHITE);
+    UG_GUI gui;
+    UG_Init(&gui, SetPixelAdapter::Set, 240, 240);
+    UG_FontSelect(&FONT_8X14);
+    UG_ConsoleSetBackcolor(C_BLACK);
+    UG_ConsoleSetForecolor(C_WHITE);
 
-    Application app;
+    IPS_240x240 ips { st7789Spi, rstPin, dcPin, SetPixelAdapter::displayBuffer.u8 };
+    Application app { ips };
+
+    char number[11];
+    uint32_t i = 0u;
     while(1)
-    {
+    {   
+        sprintf(number, "%lu\n", i++);
+        UG_PutString(0,0,number);
         app.Perform();
     }
 }
@@ -158,4 +165,5 @@ int main(void)
 extern "C" void SysTick_Handler(void)
 {
     SystickInterruptHandler::ISR();
+    ST7789::Task1ms();
 }
