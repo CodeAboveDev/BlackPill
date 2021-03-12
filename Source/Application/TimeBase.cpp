@@ -36,6 +36,11 @@ bool TimeBase::Is100msPassed(void)
     return TimePassed_100ms;
 }
 
+bool TimeBase::Is1000msPassed(void)
+{
+    return TimePassed_1000ms;
+}
+
 bool TimeBase::IsIntervalPassed(void)
 {
     uint32_t systemTime = SystickInterruptHandler::GetSystemTime();
@@ -54,6 +59,7 @@ void TimeBase::ClearTimeFlags(void)
     TimePassed_1ms = false;
     TimePassed_10ms = false;
     TimePassed_100ms = false;
+    TimePassed_1000ms = false;
 }
 
 void TimeBase::UpdateTimeFlags(void)
@@ -70,8 +76,13 @@ void TimeBase::UpdateTimeFlags(void)
         {
             TimePassed_100ms = true;
 
-            // Max time reached, reset
-            IntervalsCounter = 0u;
+            if((IntervalsCounter % 1000) == 0u)
+            {
+                TimePassed_1000ms = true;
+
+                // Max time reached, reset
+                IntervalsCounter = 0u;
+            }
         }
     }
 }

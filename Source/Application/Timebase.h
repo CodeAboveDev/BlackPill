@@ -21,6 +21,7 @@ public:
     bool Is1msPassed(void);
     bool Is10msPassed(void);
     bool Is100msPassed(void);
+    bool Is1000msPassed(void);
 
 private:
     static constexpr uint8_t IntervalTime { 1u };
@@ -31,6 +32,7 @@ private:
     bool TimePassed_1ms { false };
     bool TimePassed_10ms { false };
     bool TimePassed_100ms { false };
+    bool TimePassed_1000ms { false };
 
     bool IsIntervalPassed(void);
     void ClearTimeFlags(void);
