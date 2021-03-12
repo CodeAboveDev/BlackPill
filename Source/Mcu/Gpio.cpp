@@ -37,6 +37,11 @@ void Gpio::ResetPin(const Pin pin)
     BSRR |= ((1 << etoi(pin)) << 16);
 }
 
+void Gpio::TogglePin(const Pin pin)
+{
+    ODR = ODR ^ (1 << etoi(pin));
+}
+
 void Gpio::SetAlternateFunction(const Pin pin, const AlternateFunction function)
 {
     if(pin < Pin::Pin_8)
@@ -68,6 +73,11 @@ void GpioPin::Set(void) const
 void GpioPin::Reset(void) const
 {
     gpio.ResetPin(pin);
+}
+
+void GpioPin::Toggle(void) const
+{
+    gpio.TogglePin(pin);
 }
 
 bool GpioPin::GetState(void) const

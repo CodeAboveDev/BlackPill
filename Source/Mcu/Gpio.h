@@ -65,6 +65,7 @@ public:
     void SetPin(const Pin pin);
     bool ReadPin(const Pin pin);
     void ResetPin(const Pin pin);
+    void TogglePin(const Pin pin);
 
     void SetAlternateFunction(const Pin pin, const AlternateFunction function);
 
@@ -88,6 +89,7 @@ public:
 
     void Set(void) const;
     void Reset(void) const;
+    void Toggle(void) const;
 
     bool GetState(void) const;
 

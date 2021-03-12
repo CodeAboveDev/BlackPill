@@ -25,3 +25,8 @@ void Led::Off(void)
 {
     pin.Set();
 }
+
+void Led::Toggle(void)
+{
+    pin.Toggle();
+}

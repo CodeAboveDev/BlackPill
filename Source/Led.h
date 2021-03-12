@@ -20,6 +20,7 @@ public:
 
     void On(void);
     void Off(void);
+    void Toggle(void);
 
 private:
     GpioPin& pin;
