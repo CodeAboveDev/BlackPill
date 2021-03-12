@@ -12,8 +12,8 @@
 #include "../Led.h"
 #include "../Mcu/Gpio.h"
 
-Application::Application(IDisplay& disp)
-: display(disp)
+Application::Application(Led& led, IDisplay& disp)
+: display(disp), heartbeat(led)
 {
 
 }
@@ -39,21 +39,7 @@ void Application::Perform(void)
     // 100ms tasks
     if(timebase.Is100msPassed())
     {
-        static uint16_t cnt = 0u;
-        Gpio &gpioC = *reinterpret_cast<Gpio *>(((0x40000000UL + 0x00020000UL) + 0x0800UL));
-        GpioPin pinC13 {gpioC, Gpio::Pin::Pin_13};
-        Led blueLed(pinC13);
-
-        cnt += 1;
-        if(cnt == 5)
-        {
-            blueLed.On();
-        }
-        else if(cnt == 10)
-        {
-            blueLed.Off();
-            cnt = 0;
-        }
+        heartbeat.Perform();
     }
 
     // 1000ms tasks

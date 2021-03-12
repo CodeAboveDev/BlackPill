@@ -8,27 +8,20 @@
  * may obtain a copy of the License at:
  *                  opensource.org/licenses/BSD-3-Clause
  ****************************************************************/
-#ifndef Application_H
-#define Application_H
+#ifndef Heartbeat_H
+#define Heartbeat_H
 
-#include "Heartbeat.h"
-#include "TimeBase.h"
-#include "Display/IDisplay.h"
 #include "../Led.h"
 
-class Application
+class Heartbeat
 {
 public:
-    Application(Led& led, IDisplay& disp);
-    
+    Heartbeat(Led& led);
+
     void Perform(void);
+
 private:
-    IDisplay& display;
-
-    Heartbeat heartbeat;
-    TimeBase timebase;
-
-
+    Led& led;
 };
 
-#endif // Application_H
+#endif // Heartbeat_H

@@ -44,8 +44,9 @@ CXX_SOURCES =  \
 main.cpp \
 Led.cpp \
 Switch.cpp \
-TimeBase.cpp \
 Application/Application.cpp \
+Application/Heartbeat.cpp \
+Application/TimeBase.cpp \
 Application/Display/IPS_240x240.cpp \
 Drivers/ST7789/ST7789.cpp \
 Mcu/Gpio.cpp \

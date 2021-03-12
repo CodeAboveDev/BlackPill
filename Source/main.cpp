@@ -150,7 +150,7 @@ int main(void)
     UG_ConsoleSetForecolor(C_WHITE);
 
     IPS_240x240 ips { st7789Spi, rstPin, dcPin, SetPixelAdapter::displayBuffer.u8 };
-    Application app { ips };
+    Application app { blueLed, ips };
 
     char number[11];
     uint32_t i = 0u;
