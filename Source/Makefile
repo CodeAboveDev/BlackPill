@@ -46,6 +46,7 @@ Led.cpp \
 Switch.cpp \
 TimeBase.cpp \
 Application/Application.cpp \
+Application/Display/IPS_240x240.cpp \
 Drivers/ST7789/ST7789.cpp \
 Mcu/Gpio.cpp \
 Mcu/Flash.cpp \
