@@ -158,6 +158,33 @@ private:
         struct CFGR_bits bits;
     };
 
+    union APB1ENR_register
+    {
+        struct APB1ENR_bits
+        {
+            uint8_t TIM2EN : 1;
+            uint8_t TIM3EN : 1;
+            uint8_t TIM4EN : 1;
+            uint8_t TIM5EN : 1;
+            const uint8_t Reserved1 : 7;
+            uint8_t WWDGEN : 1;
+            const uint8_t Reserved2 : 2;
+            uint8_t SPI2EN : 2;
+            uint8_t SPI3EN : 3;
+            const uint8_t Reserved3 : 1;
+            uint8_t USART2EN : 1;
+            const uint8_t Reserved4 : 3;
+            uint8_t I2C1EN : 1;
+            uint8_t I2C2EN : 1;
+            uint8_t I2C3EN : 1;
+            const uint8_t Reserved5 : 4;
+            uint8_t PWREN : 1;
+            const uint8_t Reserved6 : 3;
+        };
+
+        uint32_t value;
+        struct APB1ENR_bits bits;
+    };
     volatile union CR_register CR;
     volatile union PLLCFGR_register PLLCFGR;
     volatile union CFGR_register CFGR;
@@ -174,7 +201,7 @@ private:
     volatile uint32_t AHB2ENR;
     volatile uint32_t Reserved5;
     volatile uint32_t Reserved6;
-    volatile uint32_t APB1ENR;
+    volatile union APB1ENR_register APB1ENR;
     volatile uint32_t APB2ENR;
     volatile uint32_t Reserved7;
     volatile uint32_t Reserved8;
