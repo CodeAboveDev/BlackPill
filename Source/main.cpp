@@ -84,16 +84,6 @@ int main(void)
     rcc.EnablePowerInterface();
     rcc.EnableSpi1();
 
-    Gpio &gpioA = *reinterpret_cast<Gpio *>(GPIOA_BASE);
-    Gpio &gpioB = *reinterpret_cast<Gpio *>(GPIOB_BASE);
-    Gpio &gpioC = *reinterpret_cast<Gpio *>(GPIOC_BASE);
-    GpioPin pinA0 {gpioA, Gpio::Pin::Pin_0}; // User KEY switch
-    GpioPin pinA5 {gpioA, Gpio::Pin::Pin_5}; // Display: SCL SPI1
-    GpioPin pinA6 {gpioA, Gpio::Pin::Pin_6}; // Display: DC
-    GpioPin pinA7 {gpioA, Gpio::Pin::Pin_7}; // Display: SDA SPI1
-    GpioPin pinB0 {gpioB, Gpio::Pin::Pin_0}; // Display: RES
-    GpioPin pinC13 {gpioC, Gpio::Pin::Pin_13}; // User LED
-
     Flash &flash = *reinterpret_cast<Flash *>(FLASH_R_BASE);
     flash.SetLatency(Flash::WaitStates::WS_3);
 
@@ -114,6 +104,16 @@ int main(void)
     systick.SetClockSource(Systick::ClockSource::AHB);
     systick.EnableInterrupt();
     systick.Enable();
+
+    Gpio &gpioA = *reinterpret_cast<Gpio *>(GPIOA_BASE);
+    Gpio &gpioB = *reinterpret_cast<Gpio *>(GPIOB_BASE);
+    Gpio &gpioC = *reinterpret_cast<Gpio *>(GPIOC_BASE);
+    GpioPin pinA0 {gpioA, Gpio::Pin::Pin_0}; // User KEY switch
+    GpioPin pinA5 {gpioA, Gpio::Pin::Pin_5}; // Display: SCL SPI1
+    GpioPin pinA6 {gpioA, Gpio::Pin::Pin_6}; // Display: DC
+    GpioPin pinA7 {gpioA, Gpio::Pin::Pin_7}; // Display: SDA SPI1
+    GpioPin pinB0 {gpioB, Gpio::Pin::Pin_0}; // Display: RES
+    GpioPin pinC13 {gpioC, Gpio::Pin::Pin_13}; // User LED
 
     pinB0.SetMode(Gpio::Mode::Output);
     pinA6.SetMode(Gpio::Mode::Output);
