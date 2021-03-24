@@ -77,11 +77,12 @@ SetPixelAdapter::buffer SetPixelAdapter::displayBuffer;
 
 int main(void)
 {
-    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
-    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOBEN;
-    RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
-    RCC->APB1ENR |= RCC_APB1ENR_PWREN;
-    RCC->APB2ENR |= RCC_APB2ENR_SPI1EN;
+    Rcc &rcc = *reinterpret_cast<Rcc *>(RCC_BASE);
+    rcc.EnableGpioA();
+    rcc.EnableGpioB();
+    rcc.EnableGpioC();
+    rcc.EnablePowerInterface();
+    rcc.EnableSpi1();
 
     Gpio &gpioA = *reinterpret_cast<Gpio *>(GPIOA_BASE);
     Gpio &gpioB = *reinterpret_cast<Gpio *>(GPIOB_BASE);
