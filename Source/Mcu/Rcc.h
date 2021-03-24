@@ -91,6 +91,17 @@ public:
 
     void SetSystemClockSource(SystemClockSource source);
 
+    // AHB1ENR functions
+    void EnableGpioA(void);
+    void EnableGpioB(void);
+    void EnableGpioC(void);
+
+    // APB1ENR functions
+    void EnablePowerInterface(void);
+ 
+    // APB2ENR functions
+    void EnableSpi1(void);
+
 private:
     union CR_register
     {

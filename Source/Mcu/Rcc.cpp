@@ -76,6 +76,31 @@ void Rcc::SetSystemClockSource(SystemClockSource source)
     }
 }
 
+void Rcc::EnableGpioA(void)
+{
+    AHB1ENR.bits.GPIOAEN = 1;
+}
+
+void Rcc::EnableGpioB(void)
+{
+    AHB1ENR.bits.GPIOBEN = 1;
+}
+
+void Rcc::EnableGpioC(void)
+{
+    AHB1ENR.bits.GPIOCEN = 1;
+}
+
+void Rcc::EnablePowerInterface(void)
+{
+    APB1ENR.bits.PWREN = 1;
+}
+
+void Rcc::EnableSpi1(void)
+{
+    APB2ENR.bits.SPI1EN = 1;
+}
+
 void Rcc::SetPllClockSource(PllClockSource source)
 {
     PLLCFGR.bits.PLLSRC = source;
