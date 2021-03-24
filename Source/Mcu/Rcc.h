@@ -158,6 +158,29 @@ private:
         struct CFGR_bits bits;
     };
 
+    union AHB1ENR_register
+    {
+        struct AHB1ENR_bits
+        {
+            uint8_t GPIOAEN : 1;
+            uint8_t GPIOBEN : 1;
+            uint8_t GPIOCEN : 1;
+            uint8_t GPIODEN : 1;
+            uint8_t GPIOEEN : 1;
+            const uint8_t Reserved1 : 2;
+            uint8_t GPIOHEN : 1;
+            const uint8_t Reserved2 : 4;
+            uint8_t CRCEN : 1;
+            const uint8_t Reserved3 : 8;
+            uint8_t DMA1EN : 1;
+            uint8_t DMA2EN : 1;
+            const uint16_t Reserved4 : 9;
+        };
+
+        uint32_t value;
+        struct AHB1ENR_bits bits;
+    };
+
     union APB1ENR_register
     {
         struct APB1ENR_bits
@@ -185,6 +208,35 @@ private:
         uint32_t value;
         struct APB1ENR_bits bits;
     };
+
+    union APB2ENR_register
+    {
+        struct APB2ENR_bits
+        {
+            uint8_t TIM1EN : 1;
+            const uint8_t Reserved1 : 3;
+            uint8_t USART1EN : 1;
+            uint8_t USART6EN : 1;
+            const uint8_t Reserved2 : 2;
+            uint8_t ADC1EN : 1;
+            const uint8_t Reserved3 : 2;
+            uint8_t SDIO : 1;
+            uint8_t SPI1EN : 1;
+            uint8_t SPI4EN : 1;
+            uint8_t SYSCFGEN : 1;
+            const uint8_t Reserved4 : 1;
+            uint8_t TIM9EN : 1;
+            uint8_t TIM10EN : 1;
+            uint8_t TIM11EN : 1;
+            const uint8_t Reserved5 : 1;
+            uint8_t SPI5EN : 1;
+            const uint16_t Reserved6 : 11;
+        };
+
+        uint32_t value;
+        struct APB2ENR_bits bits;
+    };
+
     volatile union CR_register CR;
     volatile union PLLCFGR_register PLLCFGR;
     volatile union CFGR_register CFGR;
@@ -197,12 +249,12 @@ private:
     volatile uint32_t APB2RSTR;
     volatile uint32_t Reserved3;
     volatile uint32_t Reserved4;
-    volatile uint32_t AHB1ENR;
+    volatile union AHB1ENR_register AHB1ENR;
     volatile uint32_t AHB2ENR;
     volatile uint32_t Reserved5;
     volatile uint32_t Reserved6;
     volatile union APB1ENR_register APB1ENR;
-    volatile uint32_t APB2ENR;
+    volatile union APB2ENR_register APB2ENR;
     volatile uint32_t Reserved7;
     volatile uint32_t Reserved8;
     volatile uint32_t AHB1LPENR;
