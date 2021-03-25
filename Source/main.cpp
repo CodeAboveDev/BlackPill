@@ -54,7 +54,6 @@ int main(void)
     Pwr &pwr = *reinterpret_cast<Pwr *>(PWR_BASE);
     pwr.SetRegulatorVoltageScaling(Pwr::RegulatorVoltageScaling::Scale_1);
 
-    Rcc &rcc = *reinterpret_cast<Rcc *>(RCC_BASE);
     rcc.EnableHighSpeedExternalClock();
     rcc.ConfigurePll(Rcc::PllClockSource::HSE, Rcc::PllFactors(12, 96, Rcc::PllFactorP::P_2));
     rcc.EnablePll();
