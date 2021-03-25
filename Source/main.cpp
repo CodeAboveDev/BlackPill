@@ -4,6 +4,8 @@
 #include "Application/Application.h"
 #include "Application/Display/IPS_240x240.h"
 #include "Drivers/ST7789/ST7789.h"
+#include "Drivers/ST7789_impl/ST7789Pin.h"
+#include "Drivers/ST7789_impl/ST7789Spi.h"
 #include "Libraries/UGUI/ugui.h"
 #include "Mcu/Flash.h"
 #include "Mcu/Gpio.h"
@@ -14,44 +16,6 @@
 #include "Led.h"
 #include "Switch.h"
 #include "stm32f4xx.h"
-
-class ST7789Pin : public IST7789Pin
-{
-public:
-    ST7789Pin(GpioPin& pin) : pin(pin) {};
-
-    void Set(void) override
-    {
-        pin.Set();
-    };
-    
-    void Reset(void) override
-    {
-        pin.Reset();
-    };
-
-private:
-    GpioPin& pin;
-};
-
-class ST7789Spi : public IST7789Spi
-{
-public:
-    ST7789Spi(Spi& spi) : spi(spi) {};
-
-    void Write(uint8_t byte) override
-    {
-        spi.Write(byte);
-    };
-
-    void Write(const uint8_t* buffer, size_t size) override
-    {
-        spi.Write(buffer, size);
-    };
-
-private:
-    Spi& spi;
-};
 
 class SetPixelAdapter
 {
