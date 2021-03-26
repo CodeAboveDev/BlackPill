@@ -17,27 +17,38 @@
 #include "Switch.h"
 #include "stm32f4xx.h"
 
-class SetPixelAdapter
+template <uint16_t X, uint16_t Y>
+class DisplayBuffer
 {
 public:
-    union buffer
+    union Buffer
     {
-        uint16_t u16[240*240];
-        uint8_t u8[240*240*2];
-    };
+        uint16_t u16[X*Y];
+        uint8_t u8[X*Y*2];
+    } buf;
 
+    struct Dimension
+    {
+        constexpr static uint16_t x = X;
+        constexpr static uint16_t y = Y;
+    } dim;
+};
+
+class UGUItoST7789Adapter
+{
+public:
     static void Set(int16_t x, int16_t y, uint16_t color)
     {
-        displayBuffer.u8[(y*240+x)*2] = (color>>8);
-        displayBuffer.u8[(y*240+x)*2+1] = (color&0xFF);
+        db.buf.u8[(y * db.dim.y + x) * 2] = (color >> 8);
+        db.buf.u8[(y * db.dim.y + x) * 2 + 1] = (color & 0xFF);
     };
 
+    static DisplayBuffer<240,240> db;
     static union buffer displayBuffer;
     static ST7789* pST7789;
-private:
 };
-ST7789* SetPixelAdapter::pST7789 = nullptr;
-SetPixelAdapter::buffer SetPixelAdapter::displayBuffer;
+ST7789* UGUItoST7789Adapter::pST7789 = nullptr;
+DisplayBuffer<240,240> UGUItoST7789Adapter::db;
 
 int main(void)
 {
@@ -108,12 +119,12 @@ int main(void)
     // SetPixelAdapter::pST7789 = &st7789;
     
     UG_GUI gui;
-    UG_Init(&gui, SetPixelAdapter::Set, 240, 240);
+    UG_Init(&gui, UGUItoST7789Adapter::Set, 240, 240);
     UG_FontSelect(&FONT_8X14);
     UG_ConsoleSetBackcolor(C_BLACK);
     UG_ConsoleSetForecolor(C_WHITE);
 
-    IPS_240x240 ips { st7789Spi, rstPin, dcPin, SetPixelAdapter::displayBuffer.u8 };
+    IPS_240x240 ips { st7789Spi, rstPin, dcPin, UGUItoST7789Adapter::db.buf.u8 };
     Application app { blueLed, ips };
 
     char number[11];
