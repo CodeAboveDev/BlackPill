@@ -4,6 +4,7 @@
 #include "Application/Application.h"
 #include "Application/Display/DisplayBuffer.h"
 #include "Application/Display_impl/IPS_240x240.h"
+#include "Application/Display_impl/UGUItoST7789Adapter.h"
 #include "Drivers/ST7789/ST7789.h"
 #include "Drivers/ST7789_impl/ST7789Pin.h"
 #include "Drivers/ST7789_impl/ST7789Spi.h"
@@ -17,22 +18,6 @@
 #include "Led.h"
 #include "Switch.h"
 #include "stm32f4xx.h"
-
-class UGUItoST7789Adapter
-{
-public:
-    static void Set(int16_t x, int16_t y, uint16_t color)
-    {
-        db.buf.u8[(y * db.dim.y + x) * 2] = (color >> 8);
-        db.buf.u8[(y * db.dim.y + x) * 2 + 1] = (color & 0xFF);
-    };
-
-    static DisplayBuffer<240,240> db;
-    static union buffer displayBuffer;
-    static ST7789* pST7789;
-};
-ST7789* UGUItoST7789Adapter::pST7789 = nullptr;
-DisplayBuffer<240,240> UGUItoST7789Adapter::db;
 
 int main(void)
 {
