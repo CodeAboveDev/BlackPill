@@ -11,7 +11,7 @@
 #ifndef IPS_240x240_H
 #define IPS_240x240_H
 
-#include "IDisplay.h"
+#include "../Display/IDisplay.h"
 #include "../../Drivers/ST7789/ST7789.h"
 
 class IPS_240x240 : public IDisplay

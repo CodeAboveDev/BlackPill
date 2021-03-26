@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Application/Application.h"
-#include "Application/Display/IPS_240x240.h"
+#include "Application/Display_impl/IPS_240x240.h"
 #include "Drivers/ST7789/ST7789.h"
 #include "Drivers/ST7789_impl/ST7789Pin.h"
 #include "Drivers/ST7789_impl/ST7789Spi.h"
