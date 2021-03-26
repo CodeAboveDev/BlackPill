@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Application/Application.h"
+#include "Application/Display/DisplayBuffer.h"
 #include "Application/Display_impl/IPS_240x240.h"
 #include "Drivers/ST7789/ST7789.h"
 #include "Drivers/ST7789_impl/ST7789Pin.h"
@@ -16,23 +17,6 @@
 #include "Led.h"
 #include "Switch.h"
 #include "stm32f4xx.h"
-
-template <uint16_t X, uint16_t Y>
-class DisplayBuffer
-{
-public:
-    union Buffer
-    {
-        uint16_t u16[X*Y];
-        uint8_t u8[X*Y*2];
-    } buf;
-
-    struct Dimension
-    {
-        constexpr static uint16_t x = X;
-        constexpr static uint16_t y = Y;
-    } dim;
-};
 
 class UGUItoST7789Adapter
 {
