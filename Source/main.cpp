@@ -1,15 +1,20 @@
 #include <stdint.h>
 #include "stm32f411xe.h"
+#include "Mcu/Gpio.h"
 
 int main(void)
 {
+    Gpio& gpioC = *reinterpret_cast<Gpio*>(GPIOC_BASE);
+
     // Enable GPIOA and GPIOC
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
 
     // PC13 - Output mode
-    GPIOC->MODER &= ~(GPIO_MODER_MODER13_Msk);
-    GPIOC->MODER |= GPIO_MODER_MODE13_0;
+    // GPIOC->MODER &= ~(GPIO_MODER_MODER13_Msk);
+    // GPIOC->MODER |= GPIO_MODER_MODE13_0;
+    gpioC.SetPinMode(Gpio::Pin::Pin_13, Gpio::Mode::Output); // correct
+    // gpioC.SetPinMode(Gpio::Mode::Output, Gpio::Pin::Pin_13); // incorrect
 
     // PC13 - Output type push-pull
     GPIOC->OTYPER &= ~(GPIO_OTYPER_OT13_Msk);

@@ -36,11 +36,12 @@ BUILD_DIR = build
 ######################################
 # C sources
 C_SOURCES =  \
-system_stm32f4xx.c  
+system_stm32f4xx.c \
 
 # C++ sources
 CXX_SOURCES =  \
-main.cpp 
+main.cpp \
+Mcu/Gpio.cpp \
 
 # ASM sources
 ASM_SOURCES =  \
@@ -105,7 +106,6 @@ AS_INCLUDES =
 
 # C includes
 C_INCLUDES =  \
--ICore \
 -ILibraries/CMSIS/Include \
 -ILibraries/CMSIS/Device/ST/STM32F4xx/Include \
 
@@ -117,7 +117,7 @@ ASFLAGS = $(MCU) $(AS_DEFS) $(AS_INCLUDES) $(OPT) -Wall -fdata-sections -ffuncti
 
 CFLAGS = $(MCU) $(C_DEFS) $(C_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
 
-CXXFLAGS = $(MCU) $(CXX_DEFS) $(CXX_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections
+CXXFLAGS = $(MCU) $(CXX_DEFS) $(CXX_INCLUDES) $(OPT) -Wall -fdata-sections -ffunction-sections -fno-rtti -fno-exceptions
 
 ifeq ($(DEBUG), 1)
 CFLAGS += -g -gdwarf-2
@@ -137,10 +137,13 @@ CXXFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"
 LDSCRIPT = STM32F411CEUx_FLASH.ld
 
 # libraries
-LIBS = -lc -lm -lnosys 
+LIBS = -lc -lm -lnosys -lgcc -lstdc++
 LIBDIR = 
-LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref -Wl,--gc-sections
-
+# $(LIBS) twice to resolve symbols
+# Messed dependencies?
+# https://github.com/eclipse-embed-cdt/eclipse-plugins/issues/588
+# https://stackoverflow.com/questions/15946861/linking-a-library-twice-and-size-of-executable
+LDFLAGS = $(MCU) -specs=nano.specs -T$(LDSCRIPT) $(LIBDIR) $(LIBS) $(LIBS) -Wl,-Map=$(BUILD_DIR)/$(TARGET).map,--cref -Wl,--gc-sections
 # default action: build all
 all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/$(TARGET).bin
 
