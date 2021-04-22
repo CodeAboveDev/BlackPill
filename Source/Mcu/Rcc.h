@@ -122,7 +122,7 @@ private:
             uint8_t PLLI2SON : 1;
             const uint8_t PLLI2SRDY : 1;
             const uint8_t Reserved3 : 4;
-        };
+        } __attribute__((packed));
 
         uint32_t value;
         struct CR_bits bits;
@@ -141,7 +141,7 @@ private:
             const uint8_t Reserved3 : 1;
             uint8_t PLLQ : 4;
             const uint8_t Reserved4 : 4;
-        };
+        } __attribute__((packed));
 
         uint32_t value;
         struct PLLCFGR_bits bits;
@@ -163,7 +163,7 @@ private:
             uint8_t MCO1PRE : 3;
             uint8_t MCO2PRE : 3;
             uint8_t MCO2 : 2; 
-        };
+        } __attribute__((packed));
 
         uint32_t value;
         struct CFGR_bits bits;
@@ -186,7 +186,7 @@ private:
             uint8_t DMA1EN : 1;
             uint8_t DMA2EN : 1;
             const uint16_t Reserved4 : 9;
-        };
+        } __attribute__((packed));
 
         uint32_t value;
         struct AHB1ENR_bits bits;
@@ -214,7 +214,7 @@ private:
             const uint8_t Reserved5 : 4;
             uint8_t PWREN : 1;
             const uint8_t Reserved6 : 3;
-        };
+        } __attribute__((packed));
 
         uint32_t value;
         struct APB1ENR_bits bits;
@@ -242,7 +242,7 @@ private:
             const uint8_t Reserved5 : 1;
             uint8_t SPI5EN : 1;
             const uint16_t Reserved6 : 11;
-        };
+        } __attribute__((packed));
 
         uint32_t value;
         struct APB2ENR_bits bits;

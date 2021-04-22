@@ -40,7 +40,7 @@ private:
             const uint16_t Reserved1 : 13;
             uint8_t COUNTFLAG : 1;
             const uint16_t Reserved2 : 15;
-        };
+        } __attribute__((packed));
 
         uint32_t value;
         struct CTRL_bits bits;
@@ -52,7 +52,7 @@ private:
         {
             uint32_t RELOAD : 24;
             const uint8_t Reserved : 8;
-        };
+        } __attribute__((packed));
 
         uint32_t value;
         struct LOAD_bits bits;

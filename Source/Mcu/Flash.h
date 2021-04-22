@@ -43,7 +43,7 @@ private:
             uint8_t ICRST      : 1;
             uint8_t DCRST      : 1;
             uint32_t Reserved1 : 19;
-        };        
+        } __attribute__((packed));        
         
         uint32_t value;
         struct ACR_bits bits;

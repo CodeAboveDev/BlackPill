@@ -108,7 +108,7 @@ private:
             uint8_t BIDIOE : 1;
             uint8_t BIDIMODE : 1;
             uint16_t Reserved : 16;
-        };
+        } __attribute__((packed));
 
         uint32_t value;
         struct CR1_bits bits;
@@ -128,7 +128,7 @@ private:
             const uint8_t BSY : 1;
             const uint8_t FRE : 1;
             const uint32_t Reserved : 23;
-        };
+        } __attribute__((packed));
 
         uint32_t value;
         struct SR_bits bits;

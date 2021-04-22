@@ -48,7 +48,7 @@ private:
             uint8_t FMSSR               : 1;
             uint8_t FISSR               : 1;
             uint16_t Reserved3          : 10;
-        };
+        } __attribute__((packed));
 
         uint32_t value;
         struct CR_bits bits;
