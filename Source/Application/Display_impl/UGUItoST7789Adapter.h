@@ -13,7 +13,6 @@
 
 #include <stdint.h>
 #include "../Display/DisplayBuffer.h"
-#include "../../Drivers/ST7789/ST7789.h"
 
 class UGUItoST7789Adapter
 {
@@ -26,7 +25,6 @@ public:
 
     static DisplayBuffer<240,240> db;
     static union buffer displayBuffer;
-    static ST7789* pST7789;
 };
 
 #endif // UGUItoST7789Adapter_H

@@ -10,5 +10,4 @@
  ****************************************************************/
 #include "UGUItoST7789Adapter.h"
 
-ST7789* UGUItoST7789Adapter::pST7789 = nullptr;
 DisplayBuffer<240,240> UGUItoST7789Adapter::db;
