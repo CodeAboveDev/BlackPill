@@ -203,8 +203,8 @@ private:
             const uint8_t Reserved1 : 7;
             uint8_t WWDGEN : 1;
             const uint8_t Reserved2 : 2;
-            uint8_t SPI2EN : 2;
-            uint8_t SPI3EN : 3;
+            uint8_t SPI2EN : 1;
+            uint8_t SPI3EN : 1;
             const uint8_t Reserved3 : 1;
             uint8_t USART2EN : 1;
             const uint8_t Reserved4 : 3;
