@@ -23,7 +23,34 @@ public:
         Analog // = 0b11
     };
 
+    enum class Pull : uint8_t
+    {
+        No,
+        Up,
+        Down
+    };
+
+    enum class OutputType : uint8_t
+    {
+        PushPull,
+        OpenDrain
+    };
+
+    enum class OutputSpeed : uint8_t
+    {
+        Low,
+        Medium,
+        Fast,
+        High
+    };
+
     void SetPinMode(const Pin pin, const Mode mode);
+    void SetOutputType(const Pin pin, const OutputType type);
+    void SetOutputSpeed(const Pin pin, const OutputSpeed speed);
+    void SetPinPull(const Pin pin, const Pull pull);
+    bool ReadPin(const Pin pin);
+    void SetPin(const Pin pin);
+    void ResetPin(const Pin pin);
 
 private:
     volatile uint32_t MODER;

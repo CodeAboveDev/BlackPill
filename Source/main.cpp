@@ -4,6 +4,7 @@
 
 int main(void)
 {
+    Gpio& gpioA = *reinterpret_cast<Gpio*>(GPIOA_BASE);
     Gpio& gpioC = *reinterpret_cast<Gpio*>(GPIOC_BASE);
 
     // Enable GPIOA and GPIOC
@@ -11,37 +12,33 @@ int main(void)
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOCEN;
 
     // PC13 - Output mode
-    // GPIOC->MODER &= ~(GPIO_MODER_MODER13_Msk);
-    // GPIOC->MODER |= GPIO_MODER_MODE13_0;
-    gpioC.SetPinMode(Gpio::Pin::Pin_13, Gpio::Mode::Output); // correct
-    // gpioC.SetPinMode(Gpio::Mode::Output, Gpio::Pin::Pin_13); // incorrect
+    gpioC.SetPinMode(Gpio::Pin::Pin_13, Gpio::Mode::Output);
 
     // PC13 - Output type push-pull
-    GPIOC->OTYPER &= ~(GPIO_OTYPER_OT13_Msk);
+    gpioC.SetOutputType(Gpio::Pin::Pin_13, Gpio::OutputType::PushPull);
 
     // PC13 - Output speed low
     // Reset value for GPIOC OSPEEDR is low
-    GPIOC->OSPEEDR &= ~(GPIO_OSPEEDR_OSPEED13_Msk);
+    gpioC.SetOutputSpeed(Gpio::Pin::Pin_13, Gpio::OutputSpeed::Low);
 
     // PA0 - Input mode
-    GPIOA->MODER &= ~(GPIO_MODER_MODER0_Msk);
+    gpioA.SetPinMode(Gpio::Pin::Pin_0, Gpio::Mode::Input);
 
     // PA0 - Enable pull-up register
-    GPIOA->PUPDR &= ~(GPIO_PUPDR_PUPD0_Msk);
-    GPIOA->PUPDR |= GPIO_PUPDR_PUPD0_0;
+    gpioA.SetPinPull( Gpio::Pin::Pin_0 , Gpio::Pull::Up);
 
     while(1)
     {
         // Switch pressed -> input is low
-        if((GPIOA->IDR & GPIO_IDR_ID0_Msk) == 0)
+        if(!(gpioA.ReadPin(Gpio::Pin::Pin_0)))
         {
             // Output low -> LED On
-            GPIOC->ODR &= ~(GPIO_ODR_OD13);
+            gpioC.ResetPin(Gpio::Pin::Pin_13);
         }
         else
         {
             // Output high -> LED Off
-            GPIOC->ODR |= GPIO_ODR_OD13;
+            gpioC.SetPin(Gpio::Pin::Pin_13);
         }   
     }
 }
