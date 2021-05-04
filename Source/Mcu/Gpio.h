@@ -40,6 +40,20 @@ public:
         Down
     };
 
+    enum class OutputType : uint8_t
+    {
+        PushPull,
+        OpenDrain
+    };
+
+    enum class OutputSpeed : uint8_t
+    {
+        Low,
+        Medium,
+        Fast,
+        High
+    };
+
     enum class AlternateFunction : uint8_t
     {
         AF00_SYS_AF, 
@@ -61,6 +75,8 @@ public:
     };
 
     void SetPinMode(const Pin pin, const Mode mode);
+    void SetOutputType(const Pin pin, const OutputType type);
+    void SetOutputSpeed(const Pin pin, const OutputSpeed speed);
     void SetPinPull(const Pin pin, const Pull pull);
     void SetPin(const Pin pin);
     bool ReadPin(const Pin pin);
