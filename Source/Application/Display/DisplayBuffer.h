@@ -17,13 +17,13 @@ template <uint16_t X, uint16_t Y>
 class DisplayBuffer
 {
 public:
-    union Buffer
+    static union Buffer
     {
         uint8_t u8[X*Y*2];
         uint16_t u16[X*Y];
     } buf;
 
-    struct Dimension
+    static struct Dimension
     {
         constexpr static uint16_t x = X;
         constexpr static uint16_t y = Y;
@@ -35,5 +35,8 @@ public:
         buf.u8[(y * dim.y + x) * 2 + 1] = (color & 0xFF);
     };
 };
+
+template <uint16_t X, uint16_t Y>
+class DisplayBuffer<X, Y>::Buffer DisplayBuffer<X, Y>::buf;
 
 #endif // DisplayBuffer_H
