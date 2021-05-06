@@ -4,3 +4,6 @@
 [submodule "Source/Libraries/UGUI"]
 	path = Source/Libraries/UGUI
 	url = https://github.com/CodeAboveOrg/UGUI.git
+[submodule "Source/Libraries/PCA9685"]
+	path = Source/Libraries/PCA9685
+	url = https://github.com/CodeAboveOrg/PCA9685.git
