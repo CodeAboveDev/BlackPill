@@ -11,10 +11,20 @@
 #ifndef IDisplay_H
 #define IDisplay_H
 
+#include <stdint.h>
+
 class IDisplay
 {
 public:
+    IDisplay(uint16_t x, uint16_t y) : Size{x, y} {};
     virtual void Refresh(void) = 0;
+
+protected:
+    const struct
+    {
+        uint16_t x;
+        uint16_t y;
+    } Size;
 
 private:
 
