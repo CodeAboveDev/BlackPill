@@ -49,6 +49,7 @@ Application/Heartbeat.cpp \
 Application/TimeBase.cpp \
 Application/Display_impl/IPS_240x240.cpp \
 Application/Display_impl/UGUItoST7789Adapter.cpp \
+Application/Display/_impl/ST7789Display.cpp \
 Drivers/ST7789/ST7789.cpp \
 Mcu/Gpio.cpp \
 Mcu/Flash.cpp \
