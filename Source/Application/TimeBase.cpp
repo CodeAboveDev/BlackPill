@@ -9,7 +9,7 @@
  *                  opensource.org/licenses/BSD-3-Clause
  ****************************************************************/
 #include "TimeBase.h"
-#include "../Mcu/Core/Systick.h"
+#include "Mcu/Core/Systick.h"
 
 void TimeBase::Refresh(void)
 {

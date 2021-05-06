@@ -14,8 +14,8 @@
 #include "Mcu/Rcc.h"
 #include "Mcu/Spi.h"
 #include "Mcu/Core/Systick.h"
-#include "Led.h"
-#include "Switch.h"
+#include "Drivers/Led/Led.h"
+#include "Drivers/Switch/Switch.h"
 #include "stm32f4xx.h"
 
 int main(void)

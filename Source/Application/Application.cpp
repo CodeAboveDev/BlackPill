@@ -9,8 +9,8 @@
  *                  opensource.org/licenses/BSD-3-Clause
  ****************************************************************/
 #include "Application.h"
-#include "../Led.h"
-#include "../Mcu/Gpio.h"
+#include "Drivers/Led/Led.h"
+#include "Mcu/Gpio.h"
 
 Application::Application(Led& led, IDisplay& disp)
 : display(disp), heartbeat(led)

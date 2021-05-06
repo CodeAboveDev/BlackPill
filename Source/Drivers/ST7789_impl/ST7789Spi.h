@@ -12,7 +12,7 @@
 #define ST7789Spi_H
 
 #include "../ST7789/ST7789.h"
-#include "../../Mcu/Spi.h"
+#include "Mcu/Spi.h"
 
 class ST7789Spi : public IST7789Spi
 {

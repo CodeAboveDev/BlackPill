@@ -9,6 +9,7 @@
  *                  opensource.org/licenses/BSD-3-Clause
  ****************************************************************/
 #include "Heartbeat.h"
+#include "Drivers/Led/Led.h"
 
 Heartbeat::Heartbeat(Led& led)
 : led(led)

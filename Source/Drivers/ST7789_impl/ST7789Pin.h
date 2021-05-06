@@ -12,7 +12,7 @@
 #define ST7789Pin_H
 
 #include "../ST7789/ST7789.h"
-#include "../../Mcu/Gpio.h"
+#include "Mcu/Gpio.h"
 
 class ST7789Pin : public IST7789Pin
 {

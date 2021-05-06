@@ -9,7 +9,7 @@
  *                  opensource.org/licenses/BSD-3-Clause
  ****************************************************************/
 #include "ST7789Display.h"
-#include "../../../Drivers/ST7789/ST7789.h"
+#include "Drivers/ST7789/ST7789.h"
 
 ST7789Display::ST7789Display(uint16_t x, uint16_t y, IST7789Spi& spi, IST7789Pin& rstPin, IST7789Pin& dcPin, uint8_t* buf)
 : IDisplay(x,y), st7789(spi, rstPin, dcPin, buf)

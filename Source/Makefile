@@ -42,12 +42,12 @@ Libraries/UGUI/ugui.c \
 # C++ sources
 CXX_SOURCES =  \
 main.cpp \
-Led.cpp \
-Switch.cpp \
 Application/Application.cpp \
 Application/Heartbeat.cpp \
 Application/TimeBase.cpp \
 Application/Display/_impl/ST7789Display.cpp \
+Drivers/Led/Led.cpp \
+Drivers/Switch/Switch.cpp \
 Drivers/ST7789/ST7789.cpp \
 Mcu/Gpio.cpp \
 Mcu/Flash.cpp \
@@ -119,6 +119,7 @@ AS_INCLUDES =
 
 # C includes
 C_INCLUDES =  \
+-I. \
 -ILibraries/CMSIS/Include \
 -ILibraries/CMSIS/Device/ST/STM32F4xx/Include \
 

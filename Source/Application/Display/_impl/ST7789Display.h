@@ -12,7 +12,7 @@
 #define ST7789Display_H
 
 #include "../IDisplay.h"
-#include "../../../Drivers/ST7789/ST7789.h"
+#include "Drivers/ST7789/ST7789.h"
 
 class ST7789Display : public IDisplay
 {
