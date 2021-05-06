@@ -12,7 +12,7 @@
 #include "Drivers/Led/Led.h"
 #include "Mcu/Gpio.h"
 
-Application::Application(Led& led, IDisplay& disp)
+Application::Application(Led& led, Display& disp)
 : display(disp), heartbeat(led)
 {
 

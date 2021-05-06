@@ -13,17 +13,17 @@
 
 #include "Heartbeat.h"
 #include "TimeBase.h"
-#include "Display/IDisplay.h"
+#include "Display/Display.h"
 #include "Drivers/Led/Led.h"
 
 class Application
 {
 public:
-    Application(Led& led, IDisplay& disp);
+    Application(Led& led, Display& disp);
     
     void Perform(void);
 private:
-    IDisplay& display;
+    Display& display;
 
     Heartbeat heartbeat;
     TimeBase timebase;

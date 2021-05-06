@@ -11,10 +11,10 @@
 #ifndef ST7789Display_H
 #define ST7789Display_H
 
-#include "../IDisplay.h"
+#include "../Display.h"
 #include "Drivers/ST7789/ST7789.h"
 
-class ST7789Display : public IDisplay
+class ST7789Display : public Display
 {
 public:
     ST7789Display(uint16_t x, uint16_t y, IST7789Spi& spi, IST7789Pin& rstPin, IST7789Pin& dcPin, uint8_t* buf);

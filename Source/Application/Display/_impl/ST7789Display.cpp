@@ -12,7 +12,7 @@
 #include "Drivers/ST7789/ST7789.h"
 
 ST7789Display::ST7789Display(uint16_t x, uint16_t y, IST7789Spi& spi, IST7789Pin& rstPin, IST7789Pin& dcPin, uint8_t* buf)
-: IDisplay(x,y), st7789(spi, rstPin, dcPin, buf)
+: Display(x,y), st7789(spi, rstPin, dcPin, buf)
 {
     st7789.Init();
 }

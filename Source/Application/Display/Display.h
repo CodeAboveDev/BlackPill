@@ -8,15 +8,15 @@
  * may obtain a copy of the License at:
  *                  opensource.org/licenses/BSD-3-Clause
  ****************************************************************/
-#ifndef IDisplay_H
-#define IDisplay_H
+#ifndef Display_H
+#define Display_H
 
 #include <stdint.h>
 
-class IDisplay
+class Display
 {
 public:
-    IDisplay(uint16_t x, uint16_t y) : Size{x, y} {};
+    Display(uint16_t x, uint16_t y) : Size{x, y} {};
     virtual void Refresh(void) = 0;
 
 protected:
@@ -30,4 +30,4 @@ private:
 
 };
 
-#endif // IDisplay_H
+#endif // Display_H
