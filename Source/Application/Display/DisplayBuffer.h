@@ -28,6 +28,12 @@ public:
         constexpr static uint16_t x = X;
         constexpr static uint16_t y = Y;
     } dim;
+
+    static void SetPixel(int16_t x, int16_t y, uint16_t color)
+    {
+        buf.u8[(y * dim.y + x) * 2] = (color >> 8);
+        buf.u8[(y * dim.y + x) * 2 + 1] = (color & 0xFF);
+    };
 };
 
 #endif // DisplayBuffer_H
