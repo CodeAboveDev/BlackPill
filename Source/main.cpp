@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include "Application/Application.h"
 #include "Application/Display/DisplayBuffer.h"
-#include "Application/Display_impl/IPS_240x240.h"
-#include "Application/Display_impl/UGUItoST7789Adapter.h"
 #include "Drivers/ST7789/ST7789.h"
 #include "Drivers/ST7789_impl/ST7789Pin.h"
 #include "Drivers/ST7789_impl/ST7789Spi.h"
@@ -88,12 +86,10 @@ int main(void)
     // SetPixelAdapter::pST7789 = &st7789;
     
     UG_GUI gui;
-    UG_Init(&gui, UGUItoST7789Adapter::Set, 240, 240);
     UG_FontSelect(&FONT_8X14);
     UG_ConsoleSetBackcolor(C_BLACK);
     UG_ConsoleSetForecolor(C_WHITE);
 
-    IPS_240x240 ips { st7789Spi, rstPin, dcPin, UGUItoST7789Adapter::db.buf.u8 };
     Application app { blueLed, ips };
 
     char number[11];
