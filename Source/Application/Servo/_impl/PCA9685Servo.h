@@ -11,16 +11,26 @@
 #ifndef PCA9685Servo_H
 #define PCA9685Servo_H
 
+#include <stdint.h>
+
+#include "Application/Servo/Servo.h"
+#include "Drivers/PCA9685ServoController.h"
+
 namespace CodeAbove
 {
 
-class PCA9685Servo
+class PCA9685Servo : public Servo
 {
 public:
+    PCA9685Servo(PCA9685ServoController *controller, PCA9685ServoChannel channel);
 
+    void SetAngle(uint16_t angle) final override;
+    void SetRange(uint16_t min, uint16_t max) final override;
 
 private:
-    
+    PCA9685ServoController& m_Controller;
+
+    const PCA9685ServoChannel& m_Channel;
 
 };
 
