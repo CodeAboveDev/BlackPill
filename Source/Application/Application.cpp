@@ -9,11 +9,14 @@
  *                  opensource.org/licenses/BSD-3-Clause
  ****************************************************************/
 #include "Application.h"
+#include "Servo/Servo.h"
 #include "Drivers/Led/Led.h"
 #include "Mcu/Gpio.h"
 
-Application::Application(Led& led, Display& disp)
-: display(disp), heartbeat(led)
+using namespace CodeAbove;
+
+Application::Application(Led& led, Display& disp, Servo& servo)
+: display(disp), m_Servo(servo), heartbeat(led)
 {
 
 }
@@ -46,5 +49,8 @@ void Application::Perform(void)
     if(timebase.Is1000msPassed())
     {
         display.Refresh(); //TODO: Takes too much times, slows down system
+
+        m_Servo.SetAngle(30);
+        m_Servo.SetAngle(150);
     }
 }

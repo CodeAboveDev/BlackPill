@@ -4,6 +4,7 @@
 #include "Application/Application.h"
 #include "Application/Display/DisplayBuffer.h"
 #include "Application/Display/impl/ST7789Display.h"
+#include "Application/Servo/impl/PCA9685Servo.h"
 #include "Drivers/ST7789/ST7789.h"
 #include "Drivers/ST7789_impl/ST7789Pin.h"
 #include "Drivers/ST7789_impl/ST7789Spi.h"
@@ -93,7 +94,11 @@ int main(void)
     UG_ConsoleSetForecolor(C_WHITE);
 
     ST7789Display ips { 240, 240, st7789Spi, rstPin, dcPin, DisplayBuffer<240,240>::buf.u8 };
-    Application app { blueLed, ips };
+
+    CodeAbove::Drivers::PCA9685ServoController servoCtrl;
+    CodeAbove::PCA9685Servo servo { servoCtrl, 0 };
+
+    Application app { blueLed, ips, servo };
 
     char number[11];
     uint32_t i = 0u;

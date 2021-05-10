@@ -14,16 +14,18 @@
 #include "Heartbeat.h"
 #include "TimeBase.h"
 #include "Display/Display.h"
+#include "Servo/Servo.h"
 #include "Drivers/Led/Led.h"
 
 class Application
 {
 public:
-    Application(Led& led, Display& disp);
+    Application(Led& led, Display& disp, CodeAbove::Servo& servo);
     
     void Perform(void);
 private:
     Display& display;
+    CodeAbove::Servo& m_Servo;
 
     Heartbeat heartbeat;
     TimeBase timebase;
