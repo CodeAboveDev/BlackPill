@@ -22,8 +22,12 @@ class PCA9685ServoController : public ServoController
 public:
     PCA9685ServoController();
 
+    // TODO: Channel enum class coming from ServoController abstract class?
+    // Or something else, but how to limit values?
+    void SetServoAngle(uint16_t angle, uint8_t channel) final override;
+
 private:
-    PCA9685 pca9685;
+    Libraries::PCA9685 pca9685;
 
 };
 
