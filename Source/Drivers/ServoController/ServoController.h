@@ -19,7 +19,7 @@ namespace CodeAbove::Drivers
 class ServoController
 {
 public:
-    virtual void SetAngle(uint16_t angle, uint8_t channel) = 0;
+    virtual void SetServoAngle(uint16_t angle, uint8_t channel) = 0;
 
 private:
 
