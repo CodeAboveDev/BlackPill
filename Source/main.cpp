@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "Application/Application.h"
 #include "Application/Display/DisplayBuffer.h"
-#include "Application/Display/_impl/ST7789Display.h"
+#include "Application/Display/impl/ST7789Display.h"
 #include "Drivers/ST7789/ST7789.h"
 #include "Drivers/ST7789_impl/ST7789Pin.h"
 #include "Drivers/ST7789_impl/ST7789Spi.h"

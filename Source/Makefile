@@ -45,7 +45,7 @@ main.cpp \
 Application/Application.cpp \
 Application/Heartbeat.cpp \
 Application/TimeBase.cpp \
-Application/Display/_impl/ST7789Display.cpp \
+Application/Display/impl/ST7789Display.cpp \
 Drivers/Led/Led.cpp \
 Drivers/Switch/Switch.cpp \
 Drivers/ST7789/ST7789.cpp \
