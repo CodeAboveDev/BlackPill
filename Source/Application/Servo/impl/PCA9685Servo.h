@@ -22,7 +22,7 @@ namespace CodeAbove
 class PCA9685Servo : public Servo
 {
 public:
-    PCA9685Servo(Drivers::PCA9685ServoController *controller, PCA9685ServoChannel channel);
+    PCA9685Servo(Drivers::PCA9685ServoController& controller, uint8_t channel);
 
     void SetAngle(uint16_t angle) final override;
     void SetRange(uint16_t min, uint16_t max) final override;
@@ -30,7 +30,7 @@ public:
 private:
     Drivers::PCA9685ServoController& m_Controller; // TODO: Abstract ServoController instead?
 
-    const PCA9685ServoChannel& m_Channel;
+    const uint8_t& m_Channel; // TODO: Custom type for channel number to limit values
 
 };
 
