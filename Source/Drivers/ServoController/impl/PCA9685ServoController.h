@@ -27,7 +27,7 @@ public:
     void SetServoAngle(uint16_t angle, uint8_t channel) final override;
 
 private:
-    Libraries::PCA9685 pca9685;
+    Libraries::PCA9685 m_PCA9685;
 
 };
 
