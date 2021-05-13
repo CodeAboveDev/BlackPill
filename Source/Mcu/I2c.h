@@ -11,14 +11,28 @@
 #ifndef I2c_H
 #define I2c_H
 
+#include <stdint.h>
+#include <type_traits>
+
 class I2c
 {
 public:
 
 
 private:
-
+    volatile uint32_t CR1;
+    volatile uint32_t CR2;
+    volatile uint32_t OAR1;
+    volatile uint32_t OAR2;
+    volatile uint32_t DR;
+    volatile uint32_t SR1;
+    volatile uint32_t SR2;
+    volatile uint32_t CCR;
+    volatile uint32_t TRISE;
+    volatile uint32_t FLTR;
 
 };
+
+static_assert(std::is_standard_layout<I2c>::value, "I2C class is NOT standard layout");
 
 #endif // I2c_H
