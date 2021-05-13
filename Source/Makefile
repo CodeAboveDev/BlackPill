@@ -52,8 +52,9 @@ Drivers/ServoController/impl/PCA9685ServoController.cpp \
 Drivers/Switch/Switch.cpp \
 Drivers/ST7789/ST7789.cpp \
 Libraries/PCA9685/PCA9685.cpp \
-Mcu/Gpio.cpp \
 Mcu/Flash.cpp \
+Mcu/Gpio.cpp \
+Mcu/I2c.cpp \
 Mcu/Pwr.cpp \
 Mcu/Rcc.cpp \
 Mcu/Spi.cpp \
