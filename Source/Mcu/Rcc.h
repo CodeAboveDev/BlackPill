@@ -97,6 +97,7 @@ public:
     void EnableGpioC(void);
 
     // APB1ENR functions
+    void EnableI2c1(void);
     void EnablePowerInterface(void);
  
     // APB2ENR functions

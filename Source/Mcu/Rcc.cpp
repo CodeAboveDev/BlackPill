@@ -91,6 +91,11 @@ void Rcc::EnableGpioC(void)
     AHB1ENR.bits.GPIOCEN = 1;
 }
 
+void Rcc::EnableI2c1(void)
+{
+    APB1ENR.bits.I2C1EN = 1;
+}
+
 void Rcc::EnablePowerInterface(void)
 {
     APB1ENR.bits.PWREN = 1;

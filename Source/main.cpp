@@ -27,6 +27,7 @@ int main(void)
     rcc.EnableGpioC();
     rcc.EnablePowerInterface();
     rcc.EnableSpi1();
+    rcc.EnableI2c1();
 
     Flash &flash = *reinterpret_cast<Flash *>(FLASH_R_BASE);
     flash.SetLatency(Flash::WaitStates::WS_3);
