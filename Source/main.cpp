@@ -57,6 +57,8 @@ int main(void)
     GpioPin pinA6 {gpioA, Gpio::Pin::Pin_6}; // Display: DC
     GpioPin pinA7 {gpioA, Gpio::Pin::Pin_7}; // Display: SDA SPI1
     GpioPin pinB0 {gpioB, Gpio::Pin::Pin_0}; // Display: RES
+    GpioPin pinB6 {gpioB, Gpio::Pin::Pin_6}; // Servo Controller: SCL I2C1
+    GpioPin pinB7 {gpioB, Gpio::Pin::Pin_7}; // Servo Controller: SDA I2C1
     GpioPin pinC13 {gpioC, Gpio::Pin::Pin_13}; // User LED
 
     pinB0.SetMode(Gpio::Mode::Output);
@@ -65,6 +67,16 @@ int main(void)
     pinA5.SetAlternateFunction(Gpio::AlternateFunction::AF05_SPI1_I2S1SPI2_I2S2_SPI3_I2S3);
     pinA7.SetMode(Gpio::Mode::AlternateFunction);
     pinA7.SetAlternateFunction(Gpio::AlternateFunction::AF05_SPI1_I2S1SPI2_I2S2_SPI3_I2S3);
+    pinB6.SetMode(Gpio::Mode::AlternateFunction);
+    pinB6.SetOutputSpeed(Gpio::OutputSpeed::High);
+    pinB6.SetOutputType(Gpio::OutputType::OpenDrain);
+    pinB6.SetPull(Gpio::Pull::Up);
+    pinB6.SetAlternateFunction(Gpio::AlternateFunction::AF04_I2C1_I2C2_I2C3);
+    pinB7.SetMode(Gpio::Mode::AlternateFunction);
+    pinB7.SetOutputSpeed(Gpio::OutputSpeed::High);
+    pinB7.SetOutputType(Gpio::OutputType::OpenDrain);
+    pinB7.SetPull(Gpio::Pull::Up);
+    pinB7.SetAlternateFunction(Gpio::AlternateFunction::AF04_I2C1_I2C2_I2C3);
 
     Spi &spi1 = *reinterpret_cast<Spi *>(SPI1_BASE);
     // spi1.SetBaudRate(Spi::BaudRate::PCLK_div8);
