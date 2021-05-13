@@ -19,6 +19,10 @@ class I2c
 public:
 
 
+    void SetClockSped(uint32_t speed, uint32_t pclk1ClockFrequency);
+    void SetOwnAddress1(uint8_t address);
+    void Enable(void);
+
 private:
     volatile uint32_t CR1;
     volatile uint32_t CR2;

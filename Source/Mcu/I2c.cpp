@@ -10,3 +10,19 @@
  ****************************************************************/
 #include "I2c.h"
 
+#include <stdint.h>
+
+void I2c::SetClockSped(uint32_t speed, uint32_t pclk1ClockFrequency)
+{
+
+}
+
+void I2c::SetOwnAddress1(uint8_t address)
+{
+
+}
+
+void I2c::Enable(void)
+{
+
+}
