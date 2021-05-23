@@ -29,7 +29,9 @@ public:
         DC_16_9,
     };
 
-    void SetClockSped(uint32_t speed, uint32_t pclk1ClockFrequency);
+    void SetClockSpeed(uint32_t speed, uint32_t pclk1ClockFrequency);
+    void SetClockSpeedMode(ClockSpeedMode mode);
+    void SetControlClockRegister(uint32_t speed, uint32_t pclk1ClockFrequency, DutyCycle dutyCycle);
     void SetOwnAddress1(uint8_t address);
     void Enable(void);
 
