@@ -75,8 +75,8 @@ public:
     };
 
     void SetPinMode(const Pin pin, const Mode mode);
-    void SetOutputType(const Pin pin, const OutputType type);
-    void SetOutputSpeed(const Pin pin, const OutputSpeed speed);
+    void SetPinOutputType(const Pin pin, const OutputType type);
+    void SetPinOutputSpeed(const Pin pin, const OutputSpeed speed);
     void SetPinPull(const Pin pin, const Pull pull);
     void SetPin(const Pin pin);
     bool ReadPin(const Pin pin);
@@ -110,6 +110,8 @@ public:
     bool GetState(void) const;
 
     void SetMode(const Gpio::Mode mode) const;
+    void SetOutputType(const Gpio::OutputType type) const;
+    void SetOutputSpeed(const Gpio::OutputSpeed speed) const;
     void SetPull(const Gpio::Pull pull) const;
     void SetAlternateFunction(const Gpio::AlternateFunction function) const;
 

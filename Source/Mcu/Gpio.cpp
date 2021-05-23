@@ -22,12 +22,12 @@ void Gpio::SetPinMode(const Pin pin, const Mode mode)
     MODER = ((MODER & ~(0x00000003 << (etoi(pin) * 2))) | (etoi(mode) << (etoi(pin) * 2)));
 }
 
-void Gpio::SetOutputType(const Pin pin, const OutputType type)
+void Gpio::SetPinOutputType(const Pin pin, const OutputType type)
 {
     OTYPER = ((OTYPER & ~(0x00000001 << etoi(pin))) | (etoi(type) << etoi(pin)));
 }
 
-void Gpio::SetOutputSpeed(const Pin pin, const OutputSpeed speed)
+void Gpio::SetPinOutputSpeed(const Pin pin, const OutputSpeed speed)
 {
     OSPEEDR = ((OSPEEDR & ~(0x00000003 << (etoi(pin) * 2))) | (etoi(speed) << (etoi(pin) * 2)));
 }
@@ -98,6 +98,16 @@ bool GpioPin::GetState(void) const
 void GpioPin::SetMode(const Gpio::Mode mode) const
 {
     gpio.SetPinMode(pin, mode);
+}
+
+void GpioPin::SetOutputType(const Gpio::OutputType type) const
+{
+    gpio.SetPinOutputType(pin, type);
+}
+
+void GpioPin::SetOutputSpeed(const Gpio::OutputSpeed speed) const
+{
+    gpio.SetPinOutputSpeed(pin, speed);
 }
 
 void GpioPin::SetPull(const Gpio::Pull pull) const
