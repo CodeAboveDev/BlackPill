@@ -65,3 +65,13 @@ void I2c::Enable(void)
 {
 
 }
+
+void I2c::Write(uint8_t byte)
+{
+    DR.bits.DR = byte;
+}
+
+uint8_t I2c::Read(void)
+{
+    return DR.bits.DR;
+}

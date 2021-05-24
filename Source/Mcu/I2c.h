@@ -35,6 +35,9 @@ public:
     void SetOwnAddress1(uint8_t address);
     void Enable(void);
 
+    void Write(uint8_t byte);
+    uint8_t Read(void);
+
 private:
     static constexpr uint32_t StandardSpeedMax_kHz { 100000 }; 
     static constexpr uint32_t FastSpeedMax_kHz { 400000 };
@@ -55,6 +58,18 @@ private:
 
         uint32_t value;
         struct CR2_bits bits;
+    };
+
+    union DR_register
+    {
+        struct DR_bits
+        {
+            uint8_t DR : 8;
+            const uint32_t Reserved : 24;
+        } __attribute((packed));
+
+        uint32_t value;
+        struct DR_bits bits;
     };
 
     union CCR_register
@@ -88,7 +103,7 @@ private:
     volatile union CR2_register CR2;
     volatile uint32_t OAR1;
     volatile uint32_t OAR2;
-    volatile uint32_t DR;
+    volatile union DR_register DR;
     volatile uint32_t SR1;
     volatile uint32_t SR2;
     volatile union CCR_register CCR;
