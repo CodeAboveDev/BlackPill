@@ -1,11 +1,20 @@
 #include <stdint.h>
-#include "stm32f411xe.h"
 #include "Mcu/Gpio.h"
+#include "Mcu/Rcc.h"
+#include "stm32f411xe.h"
 
 int main(void)
 {
     Gpio& gpioA = *reinterpret_cast<Gpio*>(GPIOA_BASE);
     Gpio& gpioC = *reinterpret_cast<Gpio*>(GPIOC_BASE);
+    Rcc& rcc = *reinterpret_cast<Rcc*>(RCC_BASE);
+
+    rcc.SetPllClockSource(Rcc::PllClockSource::HSE);
+    rcc.SetPllFactors(Rcc::PllFactors(12, 96, Rcc::PllFactorP::P_2));
+    rcc.SetPrescalers(Rcc::Prescalers(Rcc::AhbPrescaler::Prescaler_1, Rcc::Apb1Prescaler::Prescaler_2, Rcc::Apb2Prescaler::Prescaler_1));
+    rcc.EnableHighSpeedExternalClock();
+    rcc.EnablePll();
+    rcc.SetSystemClockSource(Rcc::SystemClockSource::PLL);
 
     // Enable GPIOA and GPIOC
     RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;
