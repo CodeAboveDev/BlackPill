@@ -1,5 +1,7 @@
 #include <stdint.h>
+#include "Mcu/Flash.h"
 #include "Mcu/Gpio.h"
+#include "Mcu/Pwr.h"
 #include "Mcu/Rcc.h"
 #include "stm32f411xe.h"
 
@@ -8,6 +10,12 @@ int main(void)
     Gpio& gpioA = *reinterpret_cast<Gpio*>(GPIOA_BASE);
     Gpio& gpioC = *reinterpret_cast<Gpio*>(GPIOC_BASE);
     Rcc& rcc = *reinterpret_cast<Rcc*>(RCC_BASE);
+
+    Flash &flash = *reinterpret_cast<Flash*>(FLASH_R_BASE);
+    flash.SetLatency(Flash::WaitStates::WS_3);
+
+    Pwr &pwr = *reinterpret_cast<Pwr*>(PWR_BASE);
+    pwr.SetRegulatorVoltageScaling(Pwr::RegulatorVoltageScaling::Scale_1);
 
     rcc.SetPllClockSource(Rcc::PllClockSource::HSE);
     rcc.SetPllFactors(Rcc::PllFactors(12, 96, Rcc::PllFactorP::P_2));

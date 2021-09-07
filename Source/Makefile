@@ -41,7 +41,9 @@ system_stm32f4xx.c \
 # C++ sources
 CXX_SOURCES =  \
 main.cpp \
+Mcu/Flash.cpp \
 Mcu/Gpio.cpp \
+Mcu/Pwr.cpp \
 Mcu/Rcc.cpp \
 
 # ASM sources
